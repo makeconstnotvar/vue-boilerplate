@@ -27,10 +27,9 @@ module.exports = {
             }
         ]
     },
-    resolve: {
+    resolve: {extensions: [".ts"],
         modules: [
             path.resolve(__dirname, 'node_modules'),
-            path.resolve(__dirname, 'app')
         ]
     },
     devtool: 'source-map',
