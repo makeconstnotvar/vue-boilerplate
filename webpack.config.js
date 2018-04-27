@@ -3,33 +3,52 @@ let webpack = require('webpack'),
 
 module.exports = {
     entry: {
-        browser: './app/index.ts',
+        browser: './app/index.js',
     },
     output: {
         filename: 'scripts.js',
         path: path.resolve(__dirname, 'build')
     },
-    externals: {
-        'vuex': 'Vuex',
-        'vue': 'Vue',
-        'vue-router': 'VueRouter'
-    },
-    plugins: [],
+    // externals: {
+    //     'vuex': 'Vuex',
+    //     'vue': 'Vue',
+    //     'vue-router': 'VueRouter'
+    // },
+    // plugins: [],
     module: {
         rules: [
             {
-                test: /\.ts$/,
-                loader: 'ts-loader'
+                test: /\.vue$/,
+                loader: 'vue-loader',
+                options: {
+                    loaders: {
+                        js: {
+                            loader: 'babel-loader',
+                            options: {
+                                presets: ['env', 'stage-0']
+                            }
+                        },
+                    }
+                }
             },
             {
-                test: /\.html$/,
-                loader: 'raw-loader'
+                test: /\.js$/,
+                exclude: [/node_modules/],
+                use: [{
+                    loader: 'babel-loader',
+                    options: {presets: ['env', 'stage-0']}
+                }]
             }
         ]
     },
-    resolve: {extensions: [".ts"],
+    resolve: {
+        extensions: [".js",".vue"],
+        /*alias: {
+            vue: 'vue/dist/vue.esm.js'
+        },*/
         modules: [
             path.resolve(__dirname, 'node_modules'),
+            path.resolve(__dirname, 'app'),
         ]
     },
     devtool: 'source-map',
