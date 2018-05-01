@@ -10,12 +10,6 @@ module.exports = {
         filename: 'scripts.js',
         path: path.resolve(__dirname, 'build')
     },
-   
-    // externals: {
-    //     'vuex': 'Vuex',
-    //     'vue': 'Vue',
-    //     'vue-router': 'VueRouter'
-    // },
     plugins: [new vue.VueLoaderPlugin()],
     module: {
         rules: [
@@ -45,13 +39,11 @@ module.exports = {
     },
     resolve: {
         extensions: [".js", ".vue"],
-        /*alias: {
-            vue: 'vue/dist/vue.esm.js'
-        },*/
         modules: [
             path.resolve(__dirname, 'node_modules'),
             path.resolve(__dirname, 'app'),
         ]
     },
+    mode:'development',
     devtool: 'source-map',
 };
