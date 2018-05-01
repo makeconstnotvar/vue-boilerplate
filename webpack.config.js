@@ -1,4 +1,5 @@
 let webpack = require('webpack'),
+    vue = require('vue-loader'),
     path = require('path');
 
 module.exports = {
@@ -9,12 +10,13 @@ module.exports = {
         filename: 'scripts.js',
         path: path.resolve(__dirname, 'build')
     },
+   
     // externals: {
     //     'vuex': 'Vuex',
     //     'vue': 'Vue',
     //     'vue-router': 'VueRouter'
     // },
-    // plugins: [],
+    plugins: [new vue.VueLoaderPlugin()],
     module: {
         rules: [
             {
@@ -36,13 +38,13 @@ module.exports = {
                 exclude: [/node_modules/],
                 use: [{
                     loader: 'babel-loader',
-                    options: {presets: ['env', 'stage-0']}
+                    options: { presets: ['env', 'stage-0'] }
                 }]
             }
         ]
     },
     resolve: {
-        extensions: [".js",".vue"],
+        extensions: [".js", ".vue"],
         /*alias: {
             vue: 'vue/dist/vue.esm.js'
         },*/

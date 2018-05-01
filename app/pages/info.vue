@@ -5,6 +5,6 @@
     </div>
 </template>
 <script>
-    import Vue from "vue";
-    export default Vue.component('info', {})
+    
+    export default {name:'Info'}
 </script>

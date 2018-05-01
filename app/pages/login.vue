@@ -10,7 +10,6 @@
 </template>
 
 <script>
-    import Vue from "vue";
-    export default Vue.component('login', {
-    })
+   
+    export default {name:'Login'}
 </script>
