@@ -6,6 +6,7 @@ import Vue from 'vue';
 Vue.use(VueRouter);
 
 export default new VueRouter({
+    mode: 'history',
     routes: [
         { path: '/info', component: Info },
         { path: '/login', component: Login }

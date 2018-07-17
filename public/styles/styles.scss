@@ -1,0 +1,21 @@
+@import "fontawesome";
+@import "roboto";
+@import "sticky";
+
+html {
+  font-family: "Roboto", "Arial", sans-serif;
+  overflow-y: scroll;
+}
+
+body {
+  margin: 0;
+}
+
+.undecorate {
+  text-decoration: none;
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+  }
+}

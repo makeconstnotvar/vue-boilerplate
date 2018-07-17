@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container container-fluid">
         <h2>Логин</h2>
         <label for="user"></label>
         <input id="user" type="text" placeholder="Логин">

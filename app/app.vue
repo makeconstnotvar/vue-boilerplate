@@ -1,17 +1,18 @@
 <template>
-  <Layout/>
+    <Layout/>
 </template>
 
 <script>
 
-import store from "./store";
-import router from "./router";
-import Layout from "./controls/layout";
+  import store from "./store";
+  import router from "./router";
+  import Layout from "./controls/layout";
 
-export default {
-  name: 'App',
-  components: { Layout },
-  store,
-  router
-};
+  export default {
+    name: 'App',
+    el: '#root',
+    components: {Layout},
+    store,
+    router
+  };
 </script>

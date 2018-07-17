@@ -1,15 +1,23 @@
 <template>
-    <div>
-        <Navbar/>
-        <h1>Главный шаблон</h1>
-        <router-view/>
+    <div class="root">
+
+        <main>
+            <Navbar/>
+            <div class="container container-fluid">
+                <h1>Главный шаблон</h1>
+            </div>
+            <hr/>
+            <router-view/>
+        </main>
+        <Footer/>
     </div>
 </template>
 <script>
-import Navbar from "./navbar";
+  import Navbar from "./navbar";
+  import Footer from "./footer";
 
-export default {
-  name: "Layout",
-  components: { Navbar }
-};
+  export default {
+    name: "Layout",
+    components: {Navbar, Footer}
+  };
 </script>
