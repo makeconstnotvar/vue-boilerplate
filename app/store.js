@@ -1,16 +1,14 @@
 import Vuex from 'vuex';
 import Vue from 'vue';
+import vacancies from './stores/vacancies';
+import filter from './stores/filter';
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
-    state: {
-        count: 0
-    },
-    mutations: {
-        increment (state) {
-            state.count++
-        }
+    modules: {
+        vacancies,
+        filter
     }
 });
 export default store;
