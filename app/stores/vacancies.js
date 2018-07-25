@@ -1,7 +1,7 @@
 import vacanciesProvider from '../providers/vacancies';
 export default {
     state: {
-        vacancies: [],
+        items: [],
         count: 0,
         progress: false,
         error: false
@@ -14,7 +14,7 @@ export default {
             state.error = status;
         },
         vacancies(state, vacancies) {
-            state.vacancies = vacancies;
+            state.items = vacancies;
         },
         count(state, count) {
             state.count = count;

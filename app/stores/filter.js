@@ -1,8 +1,9 @@
 import filterProvider from '../providers/filter';
+
 export default {
     state: {
         filter: {}
-        },
+    },
     mutations: {
         progress(state, status) {
             state.progress = status;
@@ -15,8 +16,9 @@ export default {
         },
     },
     actions: {
-        async getFilter(){
-            let data =
+        async getFilter({commit, state}, params) {
+            let filter = await filterProvider.getFilter(params);
+            commit('filter', filter)
         }
     },
     getters: {}

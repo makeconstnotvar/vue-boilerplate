@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const vacanciesProvider = {
+export default  {
     async getFilter() {
         try {
             let response = await axios.get('https://jobrum.com/job/GetFilter');
@@ -11,4 +11,3 @@ const vacanciesProvider = {
         }
     }
 };
-export {vacanciesProvider};
