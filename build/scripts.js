@@ -2971,6 +2971,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -2980,12 +2981,14 @@ __webpack_require__.r(__webpack_exports__);
         console.log('вакансии mounted');
         this.$store.dispatch('search');
     },
-    updated(){
+    updated() {
         console.log('вакансии updated');
     },
-    computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])([
-        'vacancies.items'
-    ])
+    computed: {
+        ...Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
+            items: state => state.vacancies.items,
+        })
+    }
 });
 
 
@@ -3254,8 +3257,23 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {}
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container container-fluid" }, [
+    _c("h1", [_vm._v("Список вакансий")]),
+    _vm._v(" "),
+    _c(
+      "ul",
+      _vm._l(_vm.items, function(item) {
+        return _c("li", [_vm._v(_vm._s(item.title))])
+      })
+    )
+  ])
+}
 var staticRenderFns = []
+render._withStripped = true
 
 
 

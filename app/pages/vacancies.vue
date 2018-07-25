@@ -1,9 +1,10 @@
 <template>
-    <h1>Список вакансий</h1>
-    <ul>
-        <li>1</li>
-        <li>2</li>
-    </ul>
+    <div class="container container-fluid">
+        <h1>Список вакансий</h1>
+        <ul>
+            <li v-for="item in items">{{item.title}}</li>
+        </ul>
+    </div>
 </template>
 <script>
     import {mapState} from 'vuex';
@@ -14,11 +15,13 @@
             console.log('вакансии mounted');
             this.$store.dispatch('search');
         },
-        updated(){
+        updated() {
             console.log('вакансии updated');
         },
-        computed: mapState([
-            'vacancies.items'
-        ])
+        computed: {
+            ...mapState({
+                items: state => state.vacancies.items,
+            })
+        }
     }
 </script>
