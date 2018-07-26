@@ -2,7 +2,7 @@ import filterProvider from '../providers/filter';
 
 export default {
     state: {
-        filter: {}
+        items: {}
     },
     mutations: {
         progress(state, status) {
@@ -12,7 +12,11 @@ export default {
             state.error = status;
         },
         filter(state, filter) {
-            state.filter = filter;
+            let items = [];
+            for (let key in filter) {
+                items.push({key: key, possibleValues: filter[key]})
+            }
+            state.items = items;
         },
     },
     actions: {
