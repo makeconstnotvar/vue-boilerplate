@@ -2976,19 +2976,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'Vacancies',
-    mounted() {
-        console.log('вакансии mounted');
-        this.$store.dispatch('search');
-    },
-    updated() {
-        console.log('вакансии updated');
-    },
-    computed: {
-        ...Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
-            items: state => state.vacancies.items,
-        })
-    }
+  name: 'Vacancies',
+  mounted() {
+    console.log('вакансии mounted');
+    this.$store.dispatch('search');
+  },
+  updated() {
+    console.log('вакансии updated');
+  },
+  computed: {
+    ...Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
+      items: state => state.vacancies.items,
+    })
+  }
 });
 
 

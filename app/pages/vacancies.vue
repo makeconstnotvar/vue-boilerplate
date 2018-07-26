@@ -7,21 +7,21 @@
     </div>
 </template>
 <script>
-    import {mapState} from 'vuex';
+  import {mapState} from 'vuex';
 
-    export default {
-        name: 'Vacancies',
-        mounted() {
-            console.log('вакансии mounted');
-            this.$store.dispatch('search');
-        },
-        updated() {
-            console.log('вакансии updated');
-        },
-        computed: {
-            ...mapState({
-                items: state => state.vacancies.items,
-            })
-        }
+  export default {
+    name: 'Vacancies',
+    mounted() {
+      console.log('вакансии mounted');
+      this.$store.dispatch('search');
+    },
+    updated() {
+      console.log('вакансии updated');
+    },
+    computed: {
+      ...mapState({
+        items: state => state.vacancies.items,
+      })
     }
+  }
 </script>
