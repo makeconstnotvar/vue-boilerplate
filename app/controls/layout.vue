@@ -1,9 +1,8 @@
 <template>
     <div class="root">
-
         <main>
             <Navbar/>
-            <div class="container container-fluid">
+            <div class="container">
                 <h1>Главный шаблон</h1>
             </div>
             <hr/>

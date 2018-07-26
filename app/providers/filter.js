@@ -3,7 +3,7 @@ import axios from 'axios';
 export default  {
     async getFilter() {
         try {
-            let response = await axios.get('https://jobrum.com/job/GetFilter');
+            let response = await axios.get('/api/filter/vacancies/select');
             return response.data.data;
         }
         catch (e) {
