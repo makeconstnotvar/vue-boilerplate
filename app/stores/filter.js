@@ -11,11 +11,8 @@ export default {
         error(state, status) {
             state.error = status;
         },
-        filter(state, filter) {
-            let items = [];
-            for (let key in filter) {
-                items.push({key: key, possibleValues: filter[key]})
-            }
+        filter(state, items) {
+
             state.items = items;
         },
     },

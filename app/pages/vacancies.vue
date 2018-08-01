@@ -2,7 +2,9 @@
     <div class="container">
         <h1>Список вакансий</h1>
         <div class="row">
-            <div class="side-box"></div>
+            <div class="side-box">
+                <SearchFilter/>
+            </div>
             <div class="grow">
                 <div v-for="item in items">{{item.title}}</div>
             </div>
