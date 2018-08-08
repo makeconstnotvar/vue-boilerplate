@@ -2,7 +2,8 @@ import filterProvider from '../providers/filter';
 
 export default {
   state: {
-    items: {}
+    items: {},
+    page: 1,
   },
   mutations: {
     progress(state, status) {
@@ -16,6 +17,9 @@ export default {
     },
     changeItem(state, payload) {
       state.items[payload.key] = payload;
+    },
+    page(state, page) {
+      state.page = page;
     }
   },
   actions: {
@@ -25,6 +29,9 @@ export default {
     },
     changeItem({commit}, item) {
       commit('changeItem', item);
+    },
+    changePage({commit, state},page){
+      commit('page', page);
     }
   },
   getters: {}

@@ -7,6 +7,7 @@
       </div>
       <div class="grow">
         <div v-for="vacancy in vacancies">{{vacancy.title}}</div>
+        <Pager :total="total"/>
       </div>
     </div>
   </div>
@@ -33,9 +34,16 @@
     updated() {
       console.log('вакансии updated');
     },
+    methods:{
+      changePage(page){
+        this.$store.dispatch('changePage',page);
+      }
+    },
     computed: {
       ...mapState({
-        vacancies: state => state.vacancies.items
+        vacancies: state => state.vacancies.items,
+        total:state=>state.vacancies.count,
+        page:state=>state.vacancies.page
       })
     }
   }

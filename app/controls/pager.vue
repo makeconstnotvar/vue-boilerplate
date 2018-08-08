@@ -15,6 +15,7 @@
 </template>
 
 <script>
+    import _ from 'lodash'
   export default {
     name: "Pager",
     props: ['total', 'current', 'one'],

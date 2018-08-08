@@ -1,31 +1,32 @@
 import vacanciesProvider from '../providers/vacancies';
+
 export default {
-    state: {
-        items: [],
-        count: 0,
-        progress: false,
-        error: false
+  state: {
+    items: [],
+    count: 0,
+    progress: false,
+    error: false
+  },
+  mutations: {
+    progress(state, status) {
+      state.progress = status;
     },
-    mutations: {
-        progress(state, status) {
-            state.progress = status;
-        },
-        error(state, status) {
-            state.error = status;
-        },
-        vacancies(state, vacancies) {
-            state.items = vacancies;
-        },
-        count(state, count) {
-            state.count = count;
-        },
+    error(state, status) {
+      state.error = status;
     },
-    actions: {
-        async search({commit, state}, params){
-            let data = await vacanciesProvider.getVacancies(params);
-            commit('vacancies', data.vacancies);
-            commit('count', data.vacanciesCount);
-        }
+    vacancies(state, vacancies) {
+      state.items = vacancies;
     },
-    getters: {}
+    count(state, count) {
+      state.count = count;
+    },
+  },
+  actions: {
+    async search({commit, state}, params) {
+      let data = await vacanciesProvider.getVacancies(params);
+      commit('vacancies', data.vacancies);
+      commit('count', data.vacanciesCount);
+    }
+  },
+  getters: {}
 }
