@@ -55,7 +55,8 @@ module.exports = {
     "responseId": 0,
     "monthIncomeSort": 60000.0,
     "isArchive": false
-  }, {
+  },
+    {
     "id": 11955877,
     "sources": [{"sourceName": "hh.ru", "jobLink": "/Static/JobExternalJump/?jobId=11955877&sourceId=1"}],
     "isFavorite": false,
@@ -111,7 +112,8 @@ module.exports = {
     "responseId": 0,
     "monthIncomeSort": null,
     "isArchive": false
-  }, {
+  },
+    {
     "id": 12085761,
     "sources": [{"sourceName": "hh.ru", "jobLink": "/Static/JobExternalJump/?jobId=12085761&sourceId=1"}],
     "isFavorite": false,
@@ -167,7 +169,8 @@ module.exports = {
     "responseId": 0,
     "monthIncomeSort": 60000.0,
     "isArchive": false
-  }, {
+  },
+    {
     "id": 12759985,
     "sources": [{"sourceName": "hh.ru", "jobLink": "/Static/JobExternalJump/?jobId=12759985&sourceId=1"}],
     "isFavorite": false,
@@ -223,7 +226,8 @@ module.exports = {
     "responseId": 0,
     "monthIncomeSort": 15000.0,
     "isArchive": false
-  }, {
+  },
+    {
     "id": 12353145,
     "sources": [{"sourceName": "hh.ru", "jobLink": "/Static/JobExternalJump/?jobId=12353145&sourceId=1"}],
     "isFavorite": false,
@@ -279,7 +283,8 @@ module.exports = {
     "responseId": 0,
     "monthIncomeSort": null,
     "isArchive": false
-  }, {
+  },
+    {
     "id": 12760033,
     "sources": [{"sourceName": "hh.ru", "jobLink": "/Static/JobExternalJump/?jobId=12760033&sourceId=1"}],
     "isFavorite": false,
@@ -335,7 +340,8 @@ module.exports = {
     "responseId": 0,
     "monthIncomeSort": 33000.0,
     "isArchive": false
-  }, {
+  },
+    {
     "id": 12530983,
     "sources": [{"sourceName": "hh.ru", "jobLink": "/Static/JobExternalJump/?jobId=12530983&sourceId=1"}],
     "isFavorite": false,
@@ -391,7 +397,8 @@ module.exports = {
     "responseId": 0,
     "monthIncomeSort": null,
     "isArchive": false
-  }, {
+  },
+    {
     "id": 12759499,
     "sources": [{"sourceName": "hh.ru", "jobLink": "/Static/JobExternalJump/?jobId=12759499&sourceId=1"}],
     "isFavorite": false,

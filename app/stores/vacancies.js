@@ -25,8 +25,9 @@ export default {
     async search({commit, state}, params) {
       let data = await vacanciesProvider.getVacancies(params);
       commit('vacancies', data.vacancies);
-      commit('count', data.vacanciesCount);
-    }
+      commit('count', data.count);
+    },
+
   },
   getters: {}
 }

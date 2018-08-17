@@ -1,0 +1,55 @@
+.pager {
+user-select: none;
+  .page {
+    display: inline-block;
+    padding: 3px 8px;
+    border: 1px solid $gray-300;
+    &:not(.disabled):not(.active):hover {
+      background-color: $gray-100;
+      cursor: pointer;
+    }
+    &.active{
+      background-color: $gray-200;
+    }
+  }
+
+  .page + .page {
+    margin-left: 4px;
+  }
+
+  .page-size {
+    position: relative;
+  }
+
+  .size-select {
+    width: 155px;
+    margin-left: 20px;
+  }
+
+  .page-chevron {
+    padding: 0 4px;
+  }
+
+  .page-dropdown {
+    display: none;
+    position: absolute;
+    width: 175px;
+    bottom: 0;
+    padding: 20px 0 31px 20px;
+    &.opened {
+      display: inline-block;
+    }
+    .page-dropdown-list {
+      background-color: $white;
+      border: 1px solid $gray-300;
+      a {
+        display: block;
+        text-align: right;
+        &:hover {
+          background-color: $gray-100;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

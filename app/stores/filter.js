@@ -4,6 +4,7 @@ export default {
   state: {
     items: {},
     page: 1,
+    pageSize: 10,
   },
   mutations: {
     progress(state, status) {
@@ -20,6 +21,9 @@ export default {
     },
     page(state, page) {
       state.page = page;
+    },
+    pageSize(state, page) {
+      state.pageSize = page;
     }
   },
   actions: {
@@ -30,8 +34,12 @@ export default {
     changeItem({commit}, item) {
       commit('changeItem', item);
     },
-    changePage({commit, state},page){
+    changePage({commit, state}, page) {
       commit('page', page);
+    },
+    changeSize({commit, state}, {page, size}) {
+      commit('page', page);
+      commit('pageSize', size);
     }
   },
   getters: {}
