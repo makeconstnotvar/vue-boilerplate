@@ -5,6 +5,5 @@
     </div>
 </template>
 <script>
-    
-    export default {name:'Info'}
+  export  default  {name:'PageInfo'};
 </script>

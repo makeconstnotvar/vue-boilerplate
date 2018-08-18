@@ -1,5 +1,6 @@
 <template>
-    <div class="container">
+    <div>
+        <Search></Search>
         <h1>Список вакансий</h1>
         <div class="row">
             <div class="side-box">
@@ -22,11 +23,12 @@
   import {mapState} from 'vuex';
   import FilterList from '../controls/filter-list';
   import Pager from '../controls/pager';
+  import Search from '../controls/search';
 
 
   export default {
-    name: 'Vacancies',
-    components: {FilterList, Pager},
+    name: 'PageVacancies',
+    components: {FilterList, Pager, Search},
     mounted() {
       this.$store.dispatch('search');
       this.$store.dispatch('getFilter');

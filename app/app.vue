@@ -1,17 +1,23 @@
 <template>
-    <Layout/>
+    <div class="root">
+        <main>
+            <Navbar/>
+            <router-view/>
+        </main>
+        <Footer/>
+    </div>
 </template>
-
 <script>
 
   import store from "./store";
   import router from "./router";
-  import Layout from "./controls/layout";
+  import Navbar from "./controls/navbar";
+  import Footer from "./controls/footer";
 
   export default {
     name: 'App',
     el: '#root',
-    components: {Layout},
+    components: {Navbar, Footer},
     store,
     router
   };

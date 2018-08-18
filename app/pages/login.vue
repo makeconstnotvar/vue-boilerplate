@@ -10,6 +10,5 @@
 </template>
 
 <script>
-   
-    export default {name:'Login'}
+  export default {name: 'PageLogin'}
 </script>

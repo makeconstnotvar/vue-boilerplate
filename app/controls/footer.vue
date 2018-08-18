@@ -1,6 +1,6 @@
 <template>
     <footer>
-        <div class="container container-fluid">
+        <div class="container">
             <div class="col">Футер</div>
         </div>
     </footer>

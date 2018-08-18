@@ -21,7 +21,7 @@
   export default {
     name: "Pager",
     props: ['total', 'current', 'one', 'size'],
-    data: function () {
+    data() {
       return {
         currentPage: this.current || 1,
         sizes: [10, 20, 50, 100],
