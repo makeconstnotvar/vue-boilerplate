@@ -5,6 +5,8 @@ export default {
     items: {},
     page: 1,
     pageSize: 10,
+    progress:false,
+    error:false
   },
   mutations: {
     progress(state, status) {

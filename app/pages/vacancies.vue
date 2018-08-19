@@ -1,8 +1,10 @@
 <template>
     <div>
         <Search></Search>
-        <h1>Список вакансий</h1>
-        <div class="row">
+        <div class="container">
+            <h1>Список вакансий</h1>
+        </div>
+        <div class="container d-flex">
             <div class="side-box">
                 <FilterList/>
             </div>
@@ -29,7 +31,7 @@
   export default {
     name: 'PageVacancies',
     components: {FilterList, Pager, Search},
-    mounted() {
+    created() {
       this.$store.dispatch('search');
       this.$store.dispatch('getFilter');
     },

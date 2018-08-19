@@ -1,12 +1,13 @@
 <template>
-    <div class="search">
+    <div class="search col center">
         <div class="container">
             <div class="row">
-                <input @keyup.enter="search" v-model="searchText" type="text" placeholder="Поисковый запрос">
+                <input class="w-50" @keyup.enter="search" v-model="searchText" type="text" placeholder="Поисковый запрос">
                 <button @click="search">Поиск</button>
             </div>
             <div class="row">
-                Ваш город: <span :text="currentCity.name"></span> <router-link to="/modal/city">изменить</router-link>
+                Ваш город: <span :text="currentCity.name"></span>
+                <router-link to="/modal/city">изменить</router-link>
             </div>
         </div>
     </div>
@@ -18,15 +19,12 @@
     data() {
       return {
         searchText: this.text || '',
-        currentCity: this.city || {name:'не выбран'}
+        currentCity: this.city || {name: 'не выбран'}
       }
     },
     methods: {
       search(e) {
         this.$emit('onSearch', this.searchText);
-      },
-      changeCity() {
-
       }
     }
   };

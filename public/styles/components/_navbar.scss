@@ -1,14 +1,4 @@
-nav {
-  background-color: $gray-500;
-}
-
 .nav-item {
   line-height: 40px;
   padding: 0 10px;
-  color: white;
-  transition: background-color 300ms;
-  &:hover{
-    background-color: darkgray;
-    transition: background-color 300ms;
-  }
 }
