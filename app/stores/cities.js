@@ -18,13 +18,16 @@ export default {
     },
   },
   actions: {
-    async fetchCities({commit, state}, params) {
+    async fetchCities({commit}, params) {
       let cities = await citiesProvider.fetch(params);
       commit('setItems', cities)
     },
-    async searchCity({commit, state}, params) {
+    async searchCity({commit}, params) {
       let cities = await citiesProvider.search(params);
       commit('setDrops', cities)
+    },
+    clearDrops({commit}){
+      commit('setDrops', [])
     },
     setSelected({commit, state}, city) {
       commit('setSelected', city)

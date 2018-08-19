@@ -1,0 +1,19 @@
+.search-dropdown-box {
+  position: relative;
+}
+
+.search-dropdown {
+  position: absolute;
+  display: none;
+  background-color: $white;
+  border: 1px solid $gray-300;
+  &.opened {
+    display: block;
+  }
+}
+.search-dropdown-item{
+  &:hover {
+    background-color: $gray-100;
+    cursor: pointer;
+  }
+}

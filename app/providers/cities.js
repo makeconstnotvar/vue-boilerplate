@@ -14,8 +14,8 @@ export default {
     });
   },
   async search(name) {
-    let response = await axios.get('https://jobrum.com/misc/SearchRegions', {searchText: name});
-    return response.data.data.map(city => {
+    let response = await axios.get('https://jobrum.com/misc/SearchRegions', {params: {searchText: name}});
+    return response.data.data.result.map(city => {
       return {
         id: city.id,
         name: city.name,
