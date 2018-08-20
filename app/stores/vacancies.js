@@ -3,31 +3,22 @@ import vacanciesProvider from '../providers/vacancies';
 export default {
   state: {
     items: [],
-    count: 0,
-    progress: false,
-    error: false
+    count: 0
   },
   mutations: {
-    progress(state, status) {
-      state.progress = status;
-    },
-    error(state, status) {
-      state.error = status;
-    },
-    vacancies(state, vacancies) {
+
+    changeVacancies(state, vacancies) {
       state.items = vacancies;
     },
-    count(state, count) {
+    changeCount(state, count) {
       state.count = count;
     },
   },
   actions: {
-    async search({commit, state}, params) {
-      let data = await vacanciesProvider.getVacancies(params);
-      commit('vacancies', data.vacancies);
-      commit('count', data.count);
+    async fetchVacancies({commit}, params) {
+      let data = await vacanciesProvider.fetch(params);
+      commit('changeVacancies', data.vacancies);
+      commit('changeCount', data.count);
     },
-
-  },
-  getters: {}
+  }
 }

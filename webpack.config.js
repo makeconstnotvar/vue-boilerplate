@@ -23,7 +23,7 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        options: {
+       /* options: {
           loaders: {
             js: {
               loader: 'babel-loader',
@@ -35,7 +35,7 @@ module.exports = {
               loaders: ['vue-style-loader', 'css-loader', 'sass-loader']
             }
           }
-        }
+        }*/
       },
       {
         test: /\.scss$/,

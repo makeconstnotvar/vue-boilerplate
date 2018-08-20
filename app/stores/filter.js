@@ -3,45 +3,44 @@ import filterProvider from '../providers/filter';
 export default {
   state: {
     items: {},
+    selectedCity: {name: 'не выбран'},
     page: 1,
-    pageSize: 10,
-    progress:false,
-    error:false
+    pageSize: 10
   },
   mutations: {
-    progress(state, status) {
-      state.progress = status;
+    changeSelectedCity(state, selected) {
+      state.selectedCity = selected
     },
-    error(state, status) {
-      state.error = status;
-    },
-    filter(state, items) {
+    changeFilter(state, items) {
       state.items = items;
     },
     changeItem(state, payload) {
       state.items[payload.key] = payload;
     },
-    page(state, page) {
+    changePage(state, page) {
       state.page = page;
     },
-    pageSize(state, page) {
-      state.pageSize = page;
+    changePageSize(state, size) {
+      state.page = 1;
+      state.pageSize = size;
     }
   },
   actions: {
-    async getFilter({commit, state}, params) {
-      let filter = await filterProvider.getFilter(params);
-      commit('filter', filter)
+    async fetchFilter({commit, state}, params) {
+      let filter = await filterProvider.fetch(params);
+      commit('changeFilter', filter)
     },
     changeItem({commit}, item) {
       commit('changeItem', item);
     },
-    changePage({commit, state}, page) {
-      commit('page', page);
+    changeSelectedCity({commit}, city) {
+      commit('changeSelectedCity', city);
     },
-    changeSize({commit, state}, {page, size}) {
-      commit('page', page);
-      commit('pageSize', size);
+    changePage({commit, state}, page) {
+      commit('changePage', page);
+    },
+    changeSize({commit, state}, size) {
+      commit('changePageSize', size);
     }
   },
   getters: {}

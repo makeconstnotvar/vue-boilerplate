@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <h1>Выбор города</h1>
-        <div>Текущий: <span :text="currentCity.name"></span></div>
+        <div>Текущий: {{selectedCity.name}}</div>
         <input @input="search" v-model="searchText" type="text" placeholder="введите первый буквы названия города">
         <div class="search-dropdown-box" ref="searchdropdownbox">
             <div class="search-dropdown" :class="{opened:isOpen}">
@@ -10,9 +10,7 @@
         </div>
 
         <button @click="apply">Выбрать</button>
-        <div v-for="city in cities">
-            {{city.name}} ({{city.count}})
-        </div>
+        <a v-for="city in cities" @click="apply(city)">{{city.name}} ({{city.count}})</a>
     </div>
 </template>
 <script>
@@ -21,11 +19,11 @@
 
   export default {
     name: 'ModalCity',
-    props: ['city'],
     data() {
       return {
         searchText: '',
-        isOpen: false
+        isOpen: false,
+        from: this.$route.query.from || '/vacancies'
       }
     },
     created() {
@@ -35,12 +33,12 @@
       ...mapState({
         cities: state => state.cities.items,
         drops: state => state.cities.drops,
-        currentCity: state => state.cities.selected
+        selectedCity: state => state.filter.selectedCity
       })
-
     },
     methods: {
       clickOutside(event) {
+        //закрывает dropdown при клике за пределом dropdown
         let el = this.$refs.searchdropdownbox;
         if (el == event.target || el.contains(event.target)) {
           this.apply();
@@ -49,24 +47,23 @@
         }
       },
       apply(drop) {
-        console.log('apply');
-        this.$store.dispatch('setSelected', drop);
+        this.$store.dispatch('changeSelectedCity', drop);
         this.close();
+        this.$router.push(this.from);
       },
       search() {
         this.open();
         this.$store.dispatch('searchCity', this.searchText);
       },
       open() {
-        this.$store.dispatch('clearDrops');
+        this.$store.dispatch('clearSearch');
+        document.body.addEventListener('click', this.clickOutside);
         this.isOpen = true;
-        document.body.addEventListener('click', this.clickOutside)
       },
       close() {
+        document.body.removeEventListener('click', this.clickOutside);
         this.isOpen = false;
-        document.body.removeEventListener('click', this.clickOutside)
       }
-
     }
   }
 </script>

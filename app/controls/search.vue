@@ -6,26 +6,37 @@
                 <button @click="search">Поиск</button>
             </div>
             <div class="row">
-                Ваш город: <span :text="currentCity.name"></span>
-                <router-link to="/modal/city">изменить</router-link>
+                Ваш город: "{{selectedCity.name}}" <router-link :to="`/modal/city?from=${currentPath}`">изменить</router-link>
             </div>
         </div>
     </div>
 </template>
 <script>
+  import {mapState} from 'vuex';
+
   export default {
     name: 'Search',
     props: ['text', 'city'],
     data() {
       return {
-        searchText: this.text || '',
-        currentCity: this.city || {name: 'не выбран'}
+        currentPath:  this.$route.fullPath,
+        searchText: this.text || ''
+      }
+    },
+    watch:{
+      '$route' (to, from) {
+        this.currentPath = to.fullPath;
       }
     },
     methods: {
       search(e) {
         this.$emit('onSearch', this.searchText);
       }
+    },
+    computed: {
+      ...mapState({
+        selectedCity: state => state.filter.selectedCity
+      })
     }
   };
 </script>

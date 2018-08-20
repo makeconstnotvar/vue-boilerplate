@@ -31,11 +31,10 @@
         isOpen: false
       };
     },
-    watch:{
-      current(val){
+    watch: {
+      current(val) {
         this.currentPage = val;
       }
-
     },
     computed: {
       pagesCount() {
@@ -57,7 +56,6 @@
         for (let i = 0; i < count; ++i) {
           pages.push(i + start);
         }
-//console.log(`start:${start} count:${count} pages ${pages.length}`)
         return pages;
       },
       isNext() {
@@ -90,10 +88,7 @@
       changeSize(size) {
         this.pageSize = +size;
         this.isOpen = false;
-        this.$emit('changeSize', {
-          page: 1,
-          size: this.pageSize
-        });
+        this.$emit('changeSize', this.pageSize);
       },
       updateCurrentPage: function (page, replace) {
         let p = this.currentPage;

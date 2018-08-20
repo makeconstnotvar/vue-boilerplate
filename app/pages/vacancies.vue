@@ -3,6 +3,7 @@
         <Search></Search>
         <div class="container">
             <h1>Список вакансий</h1>
+            <router-link to="/vacancies?test=1">переход</router-link>
         </div>
         <div class="container d-flex">
             <div class="side-box">
@@ -32,8 +33,8 @@
     name: 'PageVacancies',
     components: {FilterList, Pager, Search},
     created() {
-      this.$store.dispatch('search');
-      this.$store.dispatch('getFilter');
+      this.$store.dispatch('fetchVacancies');
+      this.$store.dispatch('fetchFilter');
     },
     updated() {
     },
@@ -41,8 +42,8 @@
       changePage(page) {
         this.$store.dispatch('changePage', page);
       },
-      changeSize(page) {
-        this.$store.dispatch('changeSize', pageSize);
+      changeSize(size) {
+        this.$store.dispatch('changeSize', size);
       }
     },
     computed: {
@@ -50,8 +51,9 @@
         vacancies: state => state.vacancies.items,
         total: state => state.vacancies.count,
         page: state => state.filter.page,
-        pageSize: state => state.filter.pageSize
+        pageSize: state => state.filter.pageSize,
       })
+
     }
   }
 </script>

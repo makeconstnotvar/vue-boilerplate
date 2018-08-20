@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default {
-    async getVacancies(params) {
+    async fetch(params) {
         try {
             let response = await axios.get('/api/vacancies/select',params);
             return response.data;
