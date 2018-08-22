@@ -1,13 +1,26 @@
 import axios from 'axios';
 
 export default {
-    async fetch(params) {
-        try {
-            let response = await axios.get('/api/vacancies/select',params);
-            return response.data;
-        }
-        catch (e) {
-
-        }
-    }
+  async fetch(params) {
+    let response = await axios.get('https://jobrum.com/Job/Search', params);
+    return serialize(response.data.data);
+  }
 };
+
+function serialize(data) {
+  return {
+    count: data.vacanciesCount,
+    vacancies: data.vacancies.map(v => {
+      return {
+        id: v.id,
+        sourceName: v.sources[0].sourceName,
+        sourceUrl: v.sources[0].jobLink,
+        isFavorite: v.isFavorite,
+        title: v.title,
+        updateDate: v.updateDate,
+        city: v.city.name,
+        employerName: v.employer.displayName
+      }
+    })
+  }
+}

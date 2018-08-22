@@ -1,28 +1,21 @@
 <template>
-  <div class="filter">
-    <button>Применить</button>
-    <div class="filter-item col" v-for="item in items">
-      <label v-for="possibleValue in item.possibleValues">
-        <input :type="item.mode" v-model="item.selected" :value="possibleValue.value" @change="change(item)">
-        {{possibleValue.name}} ({{possibleValue.count}})</label>
+    <div class="filter">
+        <button>Применить</button>
+        <div class="filter-item col" v-for="item in items">
+            <div class="filter-title">{{item.title}}</div>
+            <label v-for="possibleValue in item.possibleValues">
+                <input :type="item.mode" v-model="item.selected" :value="possibleValue.value" @change="change(item)">
+                 {{possibleValue.name}} <Color v-if="possibleValue.color" :color="possibleValue.color"/> ({{possibleValue.count}})</label>
+        </div>
     </div>
-  </div>
 </template>
-<style lang="scss">
-  .filter-item {
-    border: 1px solid #efefef;
-    border-bottom: none;
-    padding: 10px;
-    user-select: none;
-    &:last-child {
-      border-bottom: 1px solid #efefef;
-    }
-  }
-</style>
+
 <script>
   import {mapState} from 'vuex';
-  
+  import Color from 'controls/color';
+
   export default {
+    components: {Color},
     name: 'FilterList',
     mounted() {
       console.log("Filter mounted")

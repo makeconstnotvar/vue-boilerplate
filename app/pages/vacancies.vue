@@ -10,28 +10,23 @@
                 <FilterList/>
             </div>
             <div class="grow">
-                <div v-for="vacancy in vacancies">{{vacancy.title}}</div>
+                <VacancyItem v-for="vacancy in vacancies" :vacancy="vacancy"/>
                 <Pager :total="total" @changePage="changePage" @changeSize="changeSize" :current="page" :size="pageSize"/>
             </div>
         </div>
     </div>
 </template>
-<style lang="scss">
-    .side-box {
-        width: 250px;
-        margin-right: 15px;
-    }
-</style>
 <script>
   import {mapState} from 'vuex';
   import FilterList from '../controls/filter-list';
   import Pager from '../controls/pager';
   import Search from '../controls/search';
+  import VacancyItem from '../controls/vacancy-item';
 
 
   export default {
     name: 'PageVacancies',
-    components: {FilterList, Pager, Search},
+    components: {FilterList, Pager, Search,VacancyItem},
     created() {
       this.$store.dispatch('fetchVacancies');
       this.$store.dispatch('fetchFilter');

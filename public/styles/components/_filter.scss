@@ -1,0 +1,14 @@
+.filter-item {
+  border: 1px solid #efefef;
+  border-bottom: none;
+  padding: 10px;
+  user-select: none;
+  &:last-child {
+    border-bottom: 1px solid #efefef;
+  }
+}
+
+.filter-title {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
