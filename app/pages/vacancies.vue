@@ -1,13 +1,13 @@
 <template>
     <div>
-        <Search></Search>
+        <Search @onSearch="changeText"></Search>
         <div class="container">
             <h1>Список вакансий</h1>
             <router-link to="/vacancies?test=1">переход</router-link>
         </div>
         <div class="container d-flex">
             <div class="side-box">
-                <FilterList/>
+                <FilterList @onApply="changeFilter"/>
             </div>
             <div class="grow">
                 <VacancyItem v-for="vacancy in vacancies" :vacancy="vacancy"/>
@@ -26,14 +26,21 @@
 
   export default {
     name: 'PageVacancies',
-    components: {FilterList, Pager, Search,VacancyItem},
+    components: {FilterList, Pager, Search, VacancyItem},
     created() {
       this.$store.dispatch('fetchVacancies');
       this.$store.dispatch('fetchFilter');
     },
-    updated() {
-    },
     methods: {
+      changeText(text) {
+        this.$store.dispatch('changeSearchText', text);
+      },
+      changeFilter() {
+        this.$store.dispatch('applyFilter').then(({query, params}) => {
+          this.$router.push({name: 'vacancies', query, params})
+        });
+
+      },
       changePage(page) {
         this.$store.dispatch('changePage', page);
       },

@@ -1,6 +1,6 @@
 <template>
     <div class="filter">
-        <button>Применить</button>
+        <button @click="apply">Применить</button>
         <div class="filter-item col" v-for="item in items">
             <div class="filter-title">{{item.title}}</div>
             <label v-for="possibleValue in item.possibleValues">
@@ -28,6 +28,9 @@
     methods: {
       change(item) {
         this.$store.dispatch('changeItem', item)
+      },
+      apply(){
+        this.$emit('onApply')
       }
     }
   }

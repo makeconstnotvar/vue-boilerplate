@@ -12,7 +12,7 @@ export default new VueRouter({
     routes: [
         { path: '/info', component: PageInfo },
         { path: '/login', component: PageLogin },
-        { path: '/vacancies', component: PageVacancies },
+        {name:'vacancies', path: '/vacancies/:city?', component: PageVacancies },
         { path: '/modal/city', component: ModalCity }
     ]
 })

@@ -12,28 +12,28 @@ function serialize(obj) {
   for (let key in obj) {
     switch (key) {
       case 'city':
-        let checkedCities = obj[key].find(c => c.checked);
+        let checkedCity = obj[key].find(c => c.checked)||{};
         filter[key] = {
           title: 'Город',
           key: key,
           mode: 'radio',
-          selected: (checkedCities ? checkedCities.id : null),
+          selected: checkedCity.value,
           possibleValues: obj[key].map(c => {
             return {
               name: c.name,
               count: c.count,
-              value: c.id
+              value: c.value
             }
           })
         };
         break;
       case 'metro':
-        let checkedMetros = obj[key].filter(c => c.checked);
+
         filter[key] = {
           title: 'Метро',
           key: key,
           mode: 'checkbox',
-          selected: (checkedMetros ? checkedMetros.map(cm => cm.value.id) : null),
+          selected: obj[key].filter(c => c.checked).map(cm => cm.value.id),
           possibleValues: obj[key].map(c => {
             return {
               name: c.name,
@@ -45,12 +45,11 @@ function serialize(obj) {
         };
         break;
       case 'spec':
-        let checkedSpec = obj[key].filter(c => c.checked);
         filter[key] = {
           title: 'Профессиональная область',
           key: key,
           mode: 'checkbox',
-          selected: (checkedSpec ? checkedSpec.map(cm => cm.value.id) : null),
+          selected: obj[key].filter(c => c.checked).map(cm => cm.value.id) ,
           possibleValues: obj[key].map(c => {
             return {
               name: c.name,
@@ -61,12 +60,11 @@ function serialize(obj) {
         };
         break;
       case 'sch':
-        let checkedschs = obj[key].filter(c => c.checked);
         filter[key] = {
           title: 'Тип занятости',
           key: key,
           mode: 'checkbox',
-          selected: (checkedschs ? checkedschs.map(cm => cm.value) : null),
+          selected: obj[key].filter(c => c.checked).map(cm => cm.value),
           possibleValues: obj[key].map(c => {
             return {
               name: c.name,
