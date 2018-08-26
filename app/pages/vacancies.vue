@@ -3,7 +3,6 @@
         <Search @onSearch="changeText"></Search>
         <div class="container">
             <h1>Список вакансий</h1>
-            <router-link to="/vacancies?test=1">переход</router-link>
         </div>
         <div class="container d-flex">
             <div class="side-box">

@@ -6,7 +6,6 @@ const express = require('express'),
   app = express(),
   http = require('http'),
   server = http.createServer(app),
-  api = require('./api'),
   config = require('./config');
 
 app.use(helmet());
@@ -18,7 +17,9 @@ app.use('/build', express.static(path.join(__dirname, 'build')));
 app.use('/libs', express.static(path.join(__dirname, 'node_modules')));
 app.use('/fonts', express.static(path.join(__dirname, 'public/fonts')));
 app.use('/scripts', express.static(path.join(__dirname, 'public/scripts')));
-app.use('/api', api);
+app.use('/config', (req, res) => {
+  res.send(config.client);
+});
 app.use('/', (req, res, next) => {
   res.sendFile('index.html', {root: __dirname})
 });
