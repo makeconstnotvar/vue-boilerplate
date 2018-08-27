@@ -1,6 +1,7 @@
 import VueRouter from "vue-router";
 import PageLogin from './pages/login';
 import PageHome from './pages/home';
+import PageResumes from './pages/resumes';
 import PageVacancies from './pages/vacancies';
 import ModalCity from './modals/city';
 import Vue from 'vue';
@@ -12,6 +13,7 @@ export default new VueRouter({
   routes: [
     {name: 'home', path: '/', component: PageHome},
     {name: 'login', path: '/login', component: PageLogin},
+    {name: 'resumes', path: '/resumes/:city?', component: PageResumes},
     {name: 'vacancies', path: '/vacancies/:city?', component: PageVacancies},
     {name: 'modal-city', path: '/modal/city', component: ModalCity}
   ]
