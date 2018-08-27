@@ -1,15 +1,13 @@
 <template>
     <footer>
         <div class="container">
-            <div class="col">Футер</div>
+            <h2>Чёпочём</h2>
+            <div>Контакты</div>
+            <div>Политика конфиденциальности</div>
+            <div>Телефон:</div>
         </div>
     </footer>
 </template>
-<style lang="scss">
-    footer {
-        background-color: grey;
-    }
-</style>
 <script>
   export default {name: 'Footer'}
 </script>

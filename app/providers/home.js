@@ -3,31 +3,24 @@ import axios from 'axios';
 export default {
   async topSeekerSpecs() {
     let response = await axios.get('https://jobrum.com/Job/GetTopProfAreas');
-    return {
-      title: 'Профобласти',
-      key: 'spec',
-      possibleValues: response.data.data.map(spec => {
-        return {
-          name: spec.name,
-          count: spec.count,
-          value: spec.value.id
-        }
-      })
-    }
+    return response.data.data.map(spec => {
+      return {
+        name: spec.name,
+        count: spec.count,
+        value: spec.value.id
+      }
+    })
   },
   async topEmployerSpecs() {
     let response = await axios.get('https://jobrum.com/ResumeApi/GetTopProfAreas');
-    return {
-      title: 'Профобласти',
-      key: 'spec',
-      possibleValues: response.data.data.map(spec => {
-        return {
-          name: spec.name,
-          count: spec.count,
-          value: spec.value.id
-        }
-      })
-    }
+    return response.data.data.map(spec => {
+      return {
+        name: spec.name,
+        count: spec.count,
+        value: spec.value.id
+      }
+    })
+
   },
   async statistic() {
     let response = await axios.get('https://jobrum.com/Misc/GetMainPageCounts')

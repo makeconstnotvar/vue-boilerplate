@@ -3,19 +3,27 @@ import homeProvider from 'providers/home';
 export default {
   state: {
     statistic: {},
-    regions: [],
-    queries: [],
+    seekerQueries: [],
+    seekerRegions: [],
+    employerQueries: [],
+    employerRegions: [],
     specs: []
   },
   mutations: {
     changeStatistic(state, statistic) {
       state.statistic = statistic
     },
-    changeQueries(state, queries) {
-      state.queries = queries;
+    changeSeekerQueries(state, queries) {
+      state.seekerQueries = queries;
     },
-    changeRegions(state, regions) {
-      state.regions = regions;
+    changeSeekerRegions(state, regions) {
+      state.seekerRegions = regions;
+    },
+    changeEmployerQueries(state, queries) {
+      state.employerQueries = queries;
+    },
+    changeEmployerRegions(state, regions) {
+      state.employerRegions = regions;
     },
     changeSpecs(state, specs) {
       state.specs = specs
@@ -32,13 +40,13 @@ export default {
     },
     async fetchSeekerQueries({commit}) {
       let {queries, regions} = await homeProvider.topSeekerQueries();
-      commit('changeQueries', queries);
-      commit('changeRegions', regions);
+      commit('changeSeekerQueries', queries);
+      commit('changeSeekerRegions', regions);
     },
     async fetchEmployerQueries({commit}) {
       let {queries, regions} = await homeProvider.topEmployerQueries();
-      commit('changeQueries', queries);
-      commit('changeRegions', regions);
+      commit('changeEmployerQueries', queries);
+      commit('changeEmployerRegions', regions);
     },
     async fetchStatistic({commit}) {
       let statistic = await homeProvider.statistic();

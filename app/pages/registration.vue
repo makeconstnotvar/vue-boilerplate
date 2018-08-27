@@ -1,9 +1,9 @@
 <template>
   <div class="container">
-  <h1>Резюме</h1></div>
+  <h1>Регистрация</h1></div>
 </template>
 <script>
   export default {
-    name: 'PageResumes'
+    name: 'PageRegistration'
   }
 </script>
