@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 export default {
-  async fetch() {
-    let response = await axios.get('https://jobrum.com/job/GetFilter');
+  async fetch(params) {
+    let response = await axios.get('https://jobrum.com/job/GetFilter', {params});
     return serialize(response.data.data);
   }
 };

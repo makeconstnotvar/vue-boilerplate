@@ -1,4 +1,5 @@
 import filterProvider from '../providers/filter';
+import {cleanObject} from "./utils";
 
 export default {
   state: {
@@ -10,7 +11,8 @@ export default {
   },
   mutations: {
     changeSelectedCity(state, selected) {
-      state.selectedCity = selected
+      state.selectedCity = selected;
+      state.city = selected.code;
     },
     changeFilter(state, items) {
       state.items = items;
@@ -24,32 +26,29 @@ export default {
     changePage(state, page) {
       state.page = page;
     },
-    changePageSize(state, size) {
+    changeCity(state, code) {
+      state.city = code;
+    },
+    changeSize(state, size) {
       state.page = 1;
       state.pageSize = size;
-    }
+    },
+    setFromQuery(state, query) {
+      for (let key in cleanObject(query)) {
+        state[key] = query[key];
+      }
+    },
   },
   actions: {
     async fetchFilter({commit, state}, params) {
       let filter = await filterProvider.fetch(params);
       commit('changeFilter', filter)
     },
-    changeItem({commit}, item) {
-      commit('changeItem', item);
-    },
-    changeSelectedCity({commit}, city) {
+    async fetchCity({commit}, id) {
+      let city = await filterProvider.fetchCity(id);
       commit('changeSelectedCity', city);
     },
-    changeSearchText({commit}, searchText) {
-      commit('changeSearchText', searchText);
-    },
-    changePage({commit, state}, page) {
-      commit('changePage', page);
-    },
-    changeSize({commit, state}, size) {
-      commit('changePageSize', size);
-    },
-    applyFilter({state}) {
+    getQuery({state}) {
       let items = Object.values(state.items);
       let checked = items.filter(item => Array.isArray(item.selected) ? !!item.selected.length : !!item.selected);
       let queries = checked.map(({key, selected}) => {
@@ -59,9 +58,9 @@ export default {
       queries.push({page: state.page});
       queries.push({size: state.size});
       let query = queries.reduce((accumulator, query) => Object.assign(accumulator, query), {});
-      let params = {city: query.city || state.selectedCity.code};
-      delete query.city;
-      return {query, params}
+      query.city = query.city || state.selectedCity.code;
+
+      return cleanObject(query);
     }
   }
 }

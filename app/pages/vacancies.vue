@@ -6,7 +6,7 @@
         </div>
         <div class="container d-flex">
             <div class="side-box">
-                <FilterList @onApply="changeFilter"/>
+                <FilterList @onApply="fetch" @onChange="fetch"/>
             </div>
             <div class="grow">
                 <VacancyItem v-for="vacancy in vacancies" :vacancy="vacancy"/>
@@ -27,24 +27,31 @@
     name: 'PageVacancies',
     components: {FilterList, Pager, Search, VacancyItem},
     created() {
-      this.$store.dispatch('fetchVacancies');
-      this.$store.dispatch('fetchFilter');
+      let {query, params} = this.$route;
+      this.$store.commit('setFromQuery', {...query, ...params});
+      this.fetch();
     },
     methods: {
+      fetch(resultsOnly = false) {
+        this.$store.dispatch('getQuery').then(fetchParams => {
+          let {city = '', ...query} = fetchParams;
+          this.$router.replace({name: 'vacancies', params: {city:'msk'},query});
+          this.$store.dispatch('fetchVacancies', fetchParams);
+          if (!resultsOnly)
+            this.$store.dispatch('fetchFilter', fetchParams);
+        });
+      },
       changeText(text) {
         this.$store.dispatch('changeSearchText', text);
-      },
-      changeFilter() {
-        this.$store.dispatch('applyFilter').then(({query, params}) => {
-          this.$router.push({name: 'vacancies', query, params})
-        });
-
+        this.fetch();
       },
       changePage(page) {
         this.$store.dispatch('changePage', page);
+        this.fetch(true);
       },
       changeSize(size) {
         this.$store.dispatch('changeSize', size);
+        this.fetch(true);
       }
     },
     computed: {
