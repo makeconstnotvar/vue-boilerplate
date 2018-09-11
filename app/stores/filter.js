@@ -34,9 +34,8 @@ export default {
       state.pageSize = size;
     },
     setFromQuery(state, query) {
-      for (let key in cleanObject(query)) {
-        state[key] = query[key];
-      }
+      state.items = query;
+      state.city = query.city
     },
   },
   actions: {

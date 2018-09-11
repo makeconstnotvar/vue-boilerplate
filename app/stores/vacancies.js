@@ -15,8 +15,10 @@ export default {
     },
   },
   actions: {
-    async fetchVacancies({commit}, params) {
+    async fetchVacancies({dispatch,commit}, params) {
+      dispatch('resultsProgressOn');
       let data = await vacanciesProvider.fetch(params);
+      dispatch('resultsProgressOff');
       commit('changeVacancies', data.vacancies);
       commit('changeCount', data.count);
     },

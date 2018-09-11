@@ -2,7 +2,7 @@
     <div>
         <Search @onSearch="changeText"></Search>
         <div class="container">
-            <h1>Список вакансий</h1>
+            <h1>Список вакансий <Progress/></h1>
         </div>
         <div class="container d-flex">
             <div class="side-box">
@@ -21,21 +21,22 @@
   import Pager from '../controls/pager';
   import Search from '../controls/search';
   import VacancyItem from '../controls/vacancy-item';
+  import Progress from "../controls/progress";
 
 
   export default {
     name: 'PageVacancies',
-    components: {FilterList, Pager, Search, VacancyItem},
+    components: {Progress, FilterList, Pager, Search, VacancyItem},
     created() {
       let {query, params} = this.$route;
-      this.$store.commit('setFromQuery', {...query, ...params});
+      //this.$store.commit('setFromQuery', {...query, ...params});
       this.fetch();
     },
     methods: {
       fetch(resultsOnly = false) {
         this.$store.dispatch('getQuery').then(fetchParams => {
           let {city = '', ...query} = fetchParams;
-          this.$router.replace({name: 'vacancies', params: {city:'msk'},query});
+          this.$router.replace({name: 'vacancies', params: {city:city},query});
           this.$store.dispatch('fetchVacancies', fetchParams);
           if (!resultsOnly)
             this.$store.dispatch('fetchFilter', fetchParams);

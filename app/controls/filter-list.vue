@@ -27,7 +27,7 @@
     },
     methods: {
       change(item) {
-        this.$store.dispatch('changeItem', item);
+        this.$store.commit('changeItem', item);
         this.$emit('onChange')
       },
       apply(){
