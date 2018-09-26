@@ -2,11 +2,13 @@
     <div>
         <Search @onSearch="changeText"></Search>
         <div class="container">
-            <h1>Список вакансий <Progress/></h1>
+            <h1>Список вакансий
+                <Progress/>
+            </h1>
         </div>
         <div class="container d-flex">
             <div class="side-box">
-                <FilterList @onApply="fetch" @onChange="fetch"/>
+                <FilterList @onApply="refetch" @onChange="refetch"/>
             </div>
             <div class="grow">
                 <VacancyItem v-for="vacancy in vacancies" :vacancy="vacancy"/>
@@ -29,30 +31,32 @@
     components: {Progress, FilterList, Pager, Search, VacancyItem},
     created() {
       let {query, params} = this.$route;
-      //this.$store.commit('setFromQuery', {...query, ...params});
-      this.fetch();
+      this.fetch({...query, ...params});
     },
     methods: {
-      fetch(resultsOnly = false) {
+      fetch(params, resultsOnly = false) {
+        this.$store.dispatch('fetchVacancies', params);
+        if (!resultsOnly)
+          this.$store.dispatch('fetchFilter', params);
+      },
+      refetch(resultsOnly = false) {
         this.$store.dispatch('getQuery').then(fetchParams => {
           let {city = '', ...query} = fetchParams;
-          this.$router.replace({name: 'vacancies', params: {city:city},query});
-          this.$store.dispatch('fetchVacancies', fetchParams);
-          if (!resultsOnly)
-            this.$store.dispatch('fetchFilter', fetchParams);
+          this.$router.replace({name: 'vacancies', params: {city: city}, query});
+          this.fetch(fetchParams, resultsOnly)
         });
       },
       changeText(text) {
         this.$store.dispatch('changeSearchText', text);
-        this.fetch();
+        this.refetch();
       },
       changePage(page) {
         this.$store.dispatch('changePage', page);
-        this.fetch(true);
+        this.refetch(true);
       },
       changeSize(size) {
         this.$store.dispatch('changeSize', size);
-        this.fetch(true);
+        this.refetch(true);
       }
     },
     computed: {

@@ -51,7 +51,12 @@ export default {
       let items = Object.values(state.items);
       let checked = items.filter(item => Array.isArray(item.selected) ? !!item.selected.length : !!item.selected);
       let queries = checked.map(({key, selected}) => {
-        return {[key]: Array.isArray(selected) ? selected.join('+') : selected}
+        if (key === 'sch')
+          return {[key]: selected.reduce((a, b) => a + b, 0)};
+        else if (Array.isArray(selected))
+          return {[key]: selected.join('+')};
+        else
+          return {[key]: selected}
       });
       queries.push({searchText: state.searchText});
       queries.push({page: state.page});
