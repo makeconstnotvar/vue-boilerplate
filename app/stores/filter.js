@@ -32,11 +32,7 @@ export default {
     changeSize(state, size) {
       state.page = 1;
       state.pageSize = size;
-    },
-    setFromQuery(state, query) {
-      state.items = query;
-      state.city = query.city
-    },
+    }
   },
   actions: {
     async fetchFilter({commit, state}, params) {

@@ -12,7 +12,7 @@ function serialize(obj) {
   for (let key in obj) {
     switch (key) {
       case 'city':
-        let checkedCity = obj[key].find(c => c.checked)||{};
+        let checkedCity = obj[key].find(c => c.checked) || {};
         filter[key] = {
           title: 'Город',
           key: key,
@@ -28,7 +28,6 @@ function serialize(obj) {
         };
         break;
       case 'metro':
-
         filter[key] = {
           title: 'Метро',
           key: key,
@@ -49,12 +48,27 @@ function serialize(obj) {
           title: 'Профессиональная область',
           key: key,
           mode: 'checkbox',
-          selected: obj[key].filter(c => c.checked).map(cm => cm.value.id) ,
+          selected: obj[key].filter(c => c.checked).map(cm => cm.value.id),
           possibleValues: obj[key].map(c => {
             return {
               name: c.name,
               count: c.count,
               value: c.value.id
+            }
+          })
+        };
+        break;
+      case 'zp':
+        filter[key] = {
+          title: 'Зарплата',
+          key: key,
+          mode: 'checkbox',
+          selected: obj[key].filter(c => c.checked).map(cm => cm.name),
+          possibleValues: obj[key].map(c => {
+            return {
+              name: c.value.from ? `от ${c.value.from}` : 'не указана',
+              count: c.count,
+              value: c.name
             }
           })
         };
