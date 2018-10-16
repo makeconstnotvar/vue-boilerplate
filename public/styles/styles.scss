@@ -6,7 +6,6 @@
 @import "bootstrap";
 @import "components";
 
-
 html {
   font-family: "Roboto", "Arial", sans-serif;
   overflow-y: scroll;
@@ -24,9 +23,23 @@ body {
     text-decoration: none;
   }
 }
-.dashed{
+
+.dashed {
   border-bottom: 1px dashed;
 }
-.rgap6{
+
+.pointer {
+  cursor: pointer;
+}
+
+.rgap6 {
   margin-right: 6px;
+}
+
+.mb10 {
+  margin-bottom: 10px;
+}
+
+.unselect {
+  user-select: none;
 }

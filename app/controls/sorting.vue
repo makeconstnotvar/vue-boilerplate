@@ -1,53 +1,79 @@
 <template>
-    <i class="fas fa-arrows-alt-v"></i>
-    <i class="fas fa-sort-numeric-down"></i>
-    <i class="fas fa-sort-numeric-up"></i>
-    <a v-for="sort in sorts" @click="changeSort(sort.code)"> <i class="fas" :></i> {sort.name}</a>
-
+    <div class="unselect mb10">
+        <a class="dashed pointer rgap6" v-for="(sort, key) in sorts" @click="changeSort(key, sort)"> <i class="fas" :class="sort.icon"></i> {{sort.name}}</a>
+    </div>
 </template>
 <script>
-  function setupIcon(mode) {
-    switch (mode) {
-      case 'a':
-        return 'fa-sort-numeric-up';
-      case 'd':
-        return 'fa-sort-numeric-down';
-      default:
-        return 'fa-arrows-alt-v'
-    }
-  }
 
-  function getMode(code) {
-    let codeArr = Array.from(code);
-    return codeArr ? codeArr[0] : null;
-  }
-
-  let sorts = {
-    relevance: {code: 'relevance', name: 'По релевантности'},
-    date: {code: 'date', name: 'По дате'},
-    zp: {code: 'zp', name: 'По зарплате'}
-  };
-
-  let periods = {
-      all: {code: 'all', name: 'За все время'},
-      d1: {code: 'd1', name: 'За сутки'},
-      d3: {code: 'd3', name: 'За три дня'},
-      d7: {code: 'd7', name: 'За неделю'},
-      d30: {code: 'd30', name: 'За месяц'},
-      y: {code: 'y', name: 'За год'}
-    }
-  ;
   export default {
     name: 'Sorting',
     props: ['activeSort', 'activePeriod'],
     data() {
       return {
-        periods, sorts
+        periods: {
+          all: {name: 'За все время'},
+          d1: {name: 'За сутки'},
+          d3: {name: 'За три дня'},
+          d7: {name: 'За неделю'},
+          d30: {name: 'За месяц'},
+          y: {name: 'За год'}
+        },
+        sorts: {
+          relevance: {name: 'По релевантности', icon:'fa-arrows-alt-v'},
+          date: {name: 'По дате', icon:'fa-arrows-alt-v'},
+          zp: {name: 'По зарплате', icon:'fa-arrows-alt-v'}
+        }
       }
     },
-    methods:{
-      changeSort(){
-
+    created() {
+      let {code, mode} = this.parse(this.activeSort);
+      for(let key in this.sorts){
+        this.sorts[key].icon = this.setupIcon(key === code ? mode : null);
+      }
+    },
+    methods: {
+      changeSort(code, sort) {
+        let result;
+        let {mode} = sort;
+        for(let key in this.sorts){
+          if (key === code) {
+            this.sorts[key].mode = this.changeMode(mode);
+            result = this.sorts[key].mode + key;
+          }
+          else {
+            this.sorts[key].mode = null;
+          }
+          this.sorts[key].icon = this.setupIcon(this.sorts[key].mode)
+        }
+        console.log(result)
+      },
+      setupIcon(mode) {
+        switch (mode) {
+          case 'a':
+            return 'fa-sort-numeric-up';
+          case 'd':
+            return 'fa-sort-numeric-down';
+          default:
+            return 'fa-arrows-alt-v'
+        }
+      },
+      parse(activeSort) {
+        let code = null, mode = null;
+        if (activeSort) {
+          mode = Array.from(activeSort)[0];
+          code = activeSort.substr(1);
+        }
+        return {code, mode};
+      },
+      changeMode(mode) {
+        switch (mode) {
+          case 'd':
+            return 'a';
+          case 'd':
+            return 'd';
+          default:
+            return 'd';
+        }
       }
     }
   }

@@ -11,6 +11,7 @@
                 <FilterList @onApply="refetch" @onChange="refetch"/>
             </div>
             <div class="grow">
+                <Sorting/>
                 <VacancyItem v-for="vacancy in vacancies" :vacancy="vacancy"/>
                 <Pager :total="total" @changePage="changePage" @changeSize="changeSize" :current="page" :size="pageSize"/>
             </div>
@@ -24,11 +25,12 @@
   import Search from '../controls/search';
   import VacancyItem from '../controls/vacancy-item';
   import Progress from "../controls/progress";
+  import Sorting from "../controls/sorting";
 
 
   export default {
     name: 'PageVacancies',
-    components: {Progress, FilterList, Pager, Search, VacancyItem},
+    components: {Progress, FilterList, Pager, Search, VacancyItem,Sorting},
     created() {
       let {query, params} = this.$route;
       this.fetch({...query, ...params});
