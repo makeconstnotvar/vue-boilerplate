@@ -18,7 +18,6 @@
     name: 'App',
     el: '#root',
     components: {Navbar, Footer},
-    store,
-    router
+    store
   };
 </script>

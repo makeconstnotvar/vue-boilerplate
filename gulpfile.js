@@ -22,14 +22,11 @@ gulp.task('css', function () {
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(destination))
 });
-gulp.task('flex', function () {
-  return gulp.src('node_modules/flexboxgrid/dist/flexboxgrid.css')
-    .pipe(gulp.dest(destination))
-});
+
 gulp.task('watch', gulp.series('css', function watch() {
   return gulp.watch([
     'public/styles/**/*.scss'
   ], gulp.series('css'))
 }));
 
-gulp.task('default', gulp.series('css','flex'));
+gulp.task('default', gulp.series('css'));
