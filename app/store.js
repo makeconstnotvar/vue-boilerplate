@@ -8,7 +8,7 @@ import home from './stores/home';
 Vue.use(Vuex);
 
 export function createStore () {
-  return new Vuex.Store({
+  let store =  new Vuex.Store({
     state: {
       resultsProgress: false,
       resultsProgressPending: false,
@@ -59,5 +59,6 @@ export function createStore () {
       cities,
       home
     }
-  })
+  });
+  return store;
 }

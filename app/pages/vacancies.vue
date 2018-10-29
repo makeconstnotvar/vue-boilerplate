@@ -12,7 +12,7 @@
             </div>
             <div class="grow">
                 <Sorting/>
-                <VacancyItem v-for="vacancy in vacancies" :vacancy="vacancy"/>
+                <VacancyItem :key="vacancy.id" v-for="vacancy in vacancies" :vacancy="vacancy"/>
                 <Pager :total="total" @changePage="changePage" @changeSize="changeSize" :current="page" :size="pageSize"/>
             </div>
         </div>

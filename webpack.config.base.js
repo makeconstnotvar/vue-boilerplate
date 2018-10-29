@@ -1,18 +1,20 @@
 const path = require('path');
+const VueLoaderPlugin = require("vue-loader").VueLoaderPlugin;
 
 module.exports = {
-  externals: {
-    'vue': 'Vue',
-    'vue-router': 'VueRouter',
-    'vuex': 'Vuex'
-  },
+
   mode: 'development',
   module: {
     rules: [
       {
         test: /\.vue$/,
         loader: 'vue-loader'
-      }
+      },
+      {
+        test: /\.js?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader'
+      },
     ]
   },
   resolve: {
@@ -22,5 +24,6 @@ module.exports = {
       path.resolve(__dirname, 'app'),
     ]
   },
+  plugins: [new VueLoaderPlugin()],
   devtool: 'source-map',
 };
