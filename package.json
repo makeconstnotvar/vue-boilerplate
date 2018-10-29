@@ -5,7 +5,9 @@
   "main": "start.js",
   "scripts": {
     "start": "webpack --watch",
-    "build": "webpack"
+    "build": "npm run build:client && npm run build:server",
+    "build:browser": "webpack --config webpack.config.client.js",
+    "build:server": "webpack --config webpack.config.server.js"
   },
   "dependencies": {
     "body-parser": "^1.18.3",

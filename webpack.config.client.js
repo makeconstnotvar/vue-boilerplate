@@ -1,58 +1,15 @@
-let webpack = require('webpack'),
-  vue = require('vue-loader'),
-  path = require('path'),
-  MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const merge = require("webpack-merge");
+const path = require('path');
+const baseConfig = require("./webpack.config.base");
+const VueSSRClientPlugin = require('vue-server-renderer/client-plugin');
 
-module.exports = {
+module.exports = merge(baseConfig,{
   entry: {
-    browser: './app/index.js',
+    browser: './app/entry-client.js',
   },
   output: {
-    filename: 'scripts.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'build')
   },
-  externals: {
-    'vue': 'Vue',
-    'vue-router': 'VueRouter',
-    'vuex': 'Vuex'
-  },
-  plugins: [new vue.VueLoaderPlugin(), new MiniCssExtractPlugin({filename: 'styles.css'})],
-  mode: 'development',
-  module: {
-    rules: [
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-       /* options: {
-          loaders: {
-            js: {
-              loader: 'babel-loader',
-              options: {
-                presets: ['env', 'stage-0']
-              }
-            },
-            scss: {
-              loaders: ['vue-style-loader', 'css-loader', 'sass-loader']
-            }
-          }
-        }*/
-      },
-      {
-        test: /\.scss$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
-      },
-      {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
-      }
-    ]
-  },
-  resolve: {
-    extensions: ['.js', '.vue'],
-    modules: [
-      path.resolve(__dirname, 'node_modules'),
-      path.resolve(__dirname, 'app'),
-    ]
-  },
-  devtool: 'source-map',
-};
+  plugins: [new VueSSRClientPlugin()],
+});
