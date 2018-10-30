@@ -17,6 +17,7 @@
     "vue-server-renderer": "^2.5.17"
   },
   "devDependencies": {
+    "@babel/preset-es2017": "^7.0.0-beta.53",
     "axios": "^0.18.0",
     "@babel/core": "^7.1.2",
     "@babel/plugin-transform-async-to-generator": "^7.1.0",
