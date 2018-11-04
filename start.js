@@ -10,9 +10,9 @@ const express = require('express'),
   server = http.createServer(app),
   config = require('./config');
 const template = fs.readFileSync('./index.html', 'utf-8');
-const bundle = require('./build/vue-ssr-server-bundle.json');
-const {createBundleRenderer} = require('vue-server-renderer');
-const renderer = createBundleRenderer(bundle, {
+const bundle = require('./build/server');
+const {createRenderer} = require('vue-server-renderer');
+const renderer = createRenderer({
   runInNewContext: false,
   template: template
 });
@@ -31,24 +31,30 @@ app.use('/config', (req, res) => {
 });
 app.use('/', (req, res, next) => {
 
-  res.setHeader("Content-Type", "text/html");
-  let context = {
-    title: 'VUE VUEX ROUTER',
-    url: req.url
-  };
 
-  renderer.renderToString(context, (err, html) => {
-    if(err){
-      if(err.code === 404){
-        res.status(400).send('Not found');
-      }else{
-        console.log(err);
-        res.status(500).send('Internal server error');
+  bundle.default({url: req.url}).then((app) => {
+
+    res.setHeader("Content-Type", "text/html");
+    let context = {
+      title: 'VUE VUEX ROUTER',
+      url: req.url
+    };
+
+    renderer.renderToString(app, context, (err, html) => {
+      if (err) {
+        if (err.code === 404) {
+          res.status(400).send('Not found');
+        } else {
+          console.log(err);
+          res.status(500).send('Internal server error');
+        }
+      } else {
+        res.send(html);
       }
-    }else{
-      res.send(html);
-    }
-  });
+    });
+
+  })
+
 
 });
 

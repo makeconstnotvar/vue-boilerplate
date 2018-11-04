@@ -4,7 +4,6 @@
   "description": "",
   "main": "start.js",
   "scripts": {
-    "start": "webpack --watch",
     "build": "npm run build:client && npm run build:server",
     "build:client": "webpack --config webpack.config.client.js --hide-modules",
     "build:server": "webpack --config webpack.config.server.js --hide-modules"
@@ -13,8 +12,7 @@
     "body-parser": "^1.18.3",
     "compression": "^1.7.2",
     "express": "^4.16.3",
-    "helmet": "^3.12.1",
-    "vue-server-renderer": "^2.5.17"
+    "helmet": "^3.12.1"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
@@ -38,6 +36,8 @@
     "vue-loader": "^15.4.2",
     "vue-router": "^3.0.1",
     "vue-template-compiler": "^2.5.17",
+
+    "vue-server-renderer": "^2.5.17",
     "vuex": "^3.0.1",
     "vuex-router-sync": "^5.0.0",
     "webpack": "^4.23.1",

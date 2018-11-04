@@ -36,5 +36,5 @@ module.exports = {
     ]
   },
   plugins: [new VueLoaderPlugin()],
-  devtool: 'source-map',
+
 };

@@ -35,7 +35,7 @@ export default {
   async topSeekerQueries() {
     let response = await axios.get('https://jobrum.com/Misc/GetMainPageJobSeekerTop');
     return {
-      queries: response.data.data.topJobs.map(job => {
+      queries: response.data.data.top.map(job => {
         return {
           id: job.id,
           name: job.name,
@@ -54,7 +54,7 @@ export default {
   async topEmployerQueries() {
     let response = await axios.get('https://jobrum.com/Misc/GetMainPageEmployeeTop');
     return {
-      queries: response.data.data.topJobs.map(job => {
+      queries: response.data.data.top.map(job => {
         return {
           id: job.id,
           name: job.name,
