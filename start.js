@@ -32,7 +32,7 @@ app.use('/config', (req, res) => {
 app.use('/', (req, res, next) => {
 
 
-  bundle.default({url: req.url}).then((app) => {
+  bundle.createVueApp({url: req.url}).then((app) => {
 
     res.setHeader("Content-Type", "text/html");
     let context = {

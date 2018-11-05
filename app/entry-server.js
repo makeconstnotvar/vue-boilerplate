@@ -1,6 +1,6 @@
 import {createApp} from './index';
 
-export default context => {
+const createVueApp =  context => {
 
   return new Promise((resolve, reject) => {
     const {app, router, store} = createApp();
@@ -14,4 +14,5 @@ export default context => {
       resolve(app)
     }, reject)
   })
-}
+};
+export {createVueApp}

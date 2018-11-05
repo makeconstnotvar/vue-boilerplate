@@ -12,6 +12,6 @@ module.exports = merge(baseConfig, {
     path: path.resolve(__dirname, 'build')
   },
   plugins: [
-    new VueSSRClientPlugin()
+    //new VueSSRClientPlugin()
   ]
 });

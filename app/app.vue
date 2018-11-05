@@ -1,11 +1,10 @@
 <template>
-    <div class="root">
+    <div id="app" data-server-rendered="true" class="root">
         <main>
             <Navbar/>
             <router-view/>
         </main>
         <Footer/>
-
     </div>
 </template>
 <script>
