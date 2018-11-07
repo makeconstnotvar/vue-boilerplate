@@ -35,6 +35,9 @@
       let {query, params} = this.$route;
       this.fetch({...query, ...params});
     },
+    fetchData({store, route}) {
+
+    },
     methods: {
       fetch(params, resultsOnly = false) {
         this.$store.dispatch('fetchVacancies', params);

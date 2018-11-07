@@ -6,7 +6,6 @@ export default {
     count: 0
   },
   mutations: {
-
     changeVacancies(state, vacancies) {
       state.items = vacancies;
     },
