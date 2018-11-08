@@ -9,7 +9,7 @@ const express = require('express'),
   fs = require('fs'),
   server = http.createServer(app),
   config = require('./config');
-const template = fs.readFileSync('./index.html', 'utf-8');
+const template = fs.readFileSync('./server.html', 'utf-8');
 const bundle = require('./build/server');
 const {createRenderer} = require('vue-server-renderer');
 const renderer = createRenderer({
@@ -23,15 +23,15 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(compression());
 
 app.use('/build', express.static(path.join(__dirname, 'build')));
-app.use('/libs', express.static(path.join(__dirname, 'node_modules')));
+app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
 app.use('/fonts', express.static(path.join(__dirname, 'public/fonts')));
-app.use('/scripts', express.static(path.join(__dirname, 'public/scripts')));
+app.use('/styles', express.static(path.join(__dirname, 'public/styles')));
 app.use('/config', (req, res) => {
   res.send(config.client);
 });
 app.use('/', (req, res, next) => {
 
-
+  if (config.ssr) {
   bundle.createVueApp({url: req.url}).then((app) => {
 
     res.setHeader("Content-Type", "text/html");
@@ -54,7 +54,10 @@ app.use('/', (req, res, next) => {
     });
 
   })
-
+  }
+  else {
+    res.sendFile('client.html', {root: __dirname})
+  }
 
 });
 

@@ -1,4 +1,4 @@
-import Router from "vue-router";
+import VueRouter from "vue-router";
 import PageLogin from './pages/login';
 import PageRegistration from './pages/registration';
 import PageHome from './pages/home';
@@ -7,10 +7,10 @@ import PageVacancies from './pages/vacancies';
 import ModalCity from './modals/city';
 import Vue from 'vue';
 
-Vue.use(Router);
+Vue.use(VueRouter);
 
 export function createRouter () {
-  return new Router({
+  return new VueRouter({
     mode: 'history',
     routes: [
       {name: 'home', path: '/', component: PageHome},
