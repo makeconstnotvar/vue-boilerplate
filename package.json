@@ -4,6 +4,7 @@
   "description": "",
   "main": "start.js",
   "scripts": {
+    "start": "webpack --config webpack.config.client.js --hide-modules --watch",
     "build": "npm run build:client && npm run build:server",
     "build:client": "webpack --config webpack.config.client.js --hide-modules",
     "build:server": "webpack --config webpack.config.server.js --hide-modules"

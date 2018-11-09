@@ -8,20 +8,21 @@ export default {
 };
 
 
-
 function serialize(data) {
   return {
     count: data.vacanciesCount,
     vacancies: data.vacancies.map(v => {
+      let source = v.sources.length ? v.sources[0] : {sourceName: 'Не указан', jobLink: ''};
+      let employer = v.employer || {displayName: ''};
       return {
         id: v.id,
-        sourceName: v.sources[0].sourceName,
-        sourceUrl: v.sources[0].jobLink,
+        sourceName: source.sourceName,
+        sourceUrl: source.jobLink,
         isFavorite: v.isFavorite,
         title: v.title,
         updateDate: v.updateDate,
         city: v.city.name,
-        employerName: v.employer.displayName
+        employerName: employer.displayName
       }
     })
   }

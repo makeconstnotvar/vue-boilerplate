@@ -11,7 +11,7 @@
                 <FilterList @onApply="refetch" @onChange="refetch"/>
             </div>
             <div class="grow">
-                <Sorting/>
+              <Sorting :activeSort="activeSort" :activePeriod="activePeriod" @changeSort="changeSort" @changePeriod="changePeriod"/>
                 <VacancyItem :key="vacancy.id" v-for="vacancy in vacancies" :vacancy="vacancy"/>
                 <Pager :total="total" @changePage="changePage" @changeSize="changeSize" :current="page" :size="pageSize"/>
             </div>
@@ -33,9 +33,9 @@
     components: {Progress, FilterList, Pager, Search, VacancyItem,Sorting},
     created() {
       let {query, params} = this.$route;
-      this.fetch({...query, ...params});
-    },
-    fetchData({store, route}) {
+      this.$store.dispatch('getQuery').then(fetchParams => {
+        this.fetch({...fetchParams, ...query, ...params});
+      });
 
     },
     methods: {
@@ -52,15 +52,25 @@
         });
       },
       changeText(text) {
-        this.$store.dispatch('changeSearchText', text);
+        this.$store.commit('changeSearchText', text);
         this.refetch();
       },
       changePage(page) {
-        this.$store.dispatch('changePage', page);
+        this.$store.commit('changePage', page);
+        this.refetch(true);
+      },
+      changeSort(sort) {
+        console.log(sort)
+        this.$store.commit('changeSort', sort);
+        this.refetch(true);
+      },
+      changePeriod(period) {
+        console.log(period)
+        this.$store.commit('changePeriod', period);
         this.refetch(true);
       },
       changeSize(size) {
-        this.$store.dispatch('changeSize', size);
+        this.$store.commit('changeSize', size);
         this.refetch(true);
       }
     },
@@ -70,6 +80,8 @@
         total: state => state.vacancies.count,
         page: state => state.filter.page,
         pageSize: state => state.filter.pageSize,
+        activePeriod: state => state.filter.period,
+        activeSort: state => state.filter.sort,
       })
 
     }

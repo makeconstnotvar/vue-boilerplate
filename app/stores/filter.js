@@ -7,7 +7,9 @@ export default {
     selectedCity: {name: 'не выбран'},
     searchText: '',
     page: 1,
-    pageSize: 10
+    pageSize: 10,
+    sort: 'ddate',
+    period: null
   },
   mutations: {
     changeSelectedCity(state, selected) {
@@ -25,6 +27,12 @@ export default {
     },
     changePage(state, page) {
       state.page = page;
+    },
+    changeSort(state, sort) {
+      state.sort = sort;
+    },
+    changePeriod(state, period) {
+      state.sort = period;
     },
     changeCity(state, code) {
       state.city = code;
@@ -57,6 +65,8 @@ export default {
       queries.push({searchText: state.searchText});
       queries.push({page: state.page});
       queries.push({size: state.size});
+      queries.push({period: state.period});
+      queries.push({sort: state.sort});
       let query = queries.reduce((accumulator, query) => Object.assign(accumulator, query), {});
       query.city = query.city || state.selectedCity.code;
 

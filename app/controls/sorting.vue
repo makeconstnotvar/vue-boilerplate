@@ -1,7 +1,7 @@
 <template>
-    <div class="unselect mb10">
-        <a class="dashed pointer rgap6" v-for="(sort, key) in sorts" @click="changeSort(key, sort)"> <i class="fas" :class="sort.icon"></i> {{sort.name}}</a>
-    </div>
+  <div class="unselect mb10">
+    <a class="dashed pointer rgap6" v-for="(sort, key) in sorts" @click="changeSort(key, sort)"> <i class="fas" :class="sort.icon"></i> {{sort.name}}</a>
+  </div>
 </template>
 <script>
 
@@ -19,23 +19,27 @@
           y: {name: 'За год'}
         },
         sorts: {
-          relevance: {name: 'По релевантности', icon:'fa-arrows-alt-v'},
-          date: {name: 'По дате', icon:'fa-arrows-alt-v'},
-          zp: {name: 'По зарплате', icon:'fa-arrows-alt-v'}
+          relevance: {name: 'По релевантности', icon: 'fa-arrows-alt-v'},
+          date: {name: 'По дате', icon: 'fa-arrows-alt-v'},
+          zp: {name: 'По зарплате', icon: 'fa-arrows-alt-v'}
         }
       }
     },
     created() {
       let {code, mode} = this.parse(this.activeSort);
-      for(let key in this.sorts){
+      for (let key in this.sorts) {
         this.sorts[key].icon = this.setupIcon(key === code ? mode : null);
+
+        this.sorts[key].mode = key === code ? mode : null;
+
+
       }
     },
     methods: {
       changeSort(code, sort) {
         let result;
         let {mode} = sort;
-        for(let key in this.sorts){
+        for (let key in this.sorts) {
           if (key === code) {
             this.sorts[key].mode = this.changeMode(mode);
             result = this.sorts[key].mode + key;
@@ -45,7 +49,7 @@
           }
           this.sorts[key].icon = this.setupIcon(this.sorts[key].mode)
         }
-        console.log(result)
+        this.$emit('changeSort', result);
       },
       setupIcon(mode) {
         switch (mode) {
@@ -69,7 +73,7 @@
         switch (mode) {
           case 'd':
             return 'a';
-          case 'd':
+          case 'a':
             return 'd';
           default:
             return 'd';
