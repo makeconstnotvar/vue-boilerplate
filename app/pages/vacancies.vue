@@ -1,22 +1,25 @@
 <template>
-    <div>
-        <Search @onSearch="changeText"></Search>
-        <div class="container">
-            <h1>Список вакансий
-                <Progress/>
-            </h1>
-        </div>
-        <div class="container d-flex">
-            <div class="side-box">
-                <FilterList @onApply="refetch" @onChange="refetch"/>
-            </div>
-            <div class="grow">
-              <Sorting :activeSort="activeSort" :activePeriod="activePeriod" @changeSort="changeSort" @changePeriod="changePeriod"/>
-                <VacancyItem :key="vacancy.id" v-for="vacancy in vacancies" :vacancy="vacancy"/>
-                <Pager :total="total" @changePage="changePage" @changeSize="changeSize" :current="page" :size="pageSize"/>
-            </div>
-        </div>
+  <div>
+    <Search @onSearch="changeText"></Search>
+    <div class="container">
+      <h1>Список вакансий
+        <Progress/>
+      </h1>
     </div>
+    <div class="container d-flex">
+      <div class="side-box">
+        <FilterList @onApply="refetch" @onChange="refetch"/>
+      </div>
+      <div class="grow">
+        <div class="unselect mb10">
+          <Sorting :activeSort="activeSort" @changeSort="changeSort"/>
+          <Period :activePeriod="activePeriod" @changePeriod="changePeriod"/>
+        </div>
+        <VacancyItem :key="vacancy.id" v-for="vacancy in vacancies" :vacancy="vacancy"/>
+        <Pager :total="total" @changePage="changePage" @changeSize="changeSize" :current="page" :size="pageSize"/>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
   import {mapState} from 'vuex';
@@ -26,11 +29,12 @@
   import VacancyItem from '../controls/vacancy-item';
   import Progress from "../controls/progress";
   import Sorting from "../controls/sorting";
+  import Period from "../controls/period";
 
 
   export default {
     name: 'PageVacancies',
-    components: {Progress, FilterList, Pager, Search, VacancyItem,Sorting},
+    components: {Period, Progress, FilterList, Pager, Search, VacancyItem, Sorting},
     created() {
       let {query, params} = this.$route;
       this.$store.dispatch('getQuery').then(fetchParams => {
@@ -60,12 +64,12 @@
         this.refetch(true);
       },
       changeSort(sort) {
-        console.log(sort)
+        console.log(sort);
         this.$store.commit('changeSort', sort);
         this.refetch(true);
       },
       changePeriod(period) {
-        console.log(period)
+        console.log(period);
         this.$store.commit('changePeriod', period);
         this.refetch(true);
       },

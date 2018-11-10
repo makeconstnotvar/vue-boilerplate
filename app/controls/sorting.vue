@@ -1,5 +1,5 @@
 <template>
-  <div class="unselect mb10">
+  <div class="d-inline-flex">
     <a class="dashed pointer rgap6" v-for="(sort, key) in sorts" @click="changeSort(key, sort)"> <i class="fas" :class="sort.icon"></i> {{sort.name}}</a>
   </div>
 </template>
@@ -7,17 +7,9 @@
 
   export default {
     name: 'Sorting',
-    props: ['activeSort', 'activePeriod'],
+    props: ['activeSort'],
     data() {
       return {
-        periods: {
-          all: {name: 'За все время'},
-          d1: {name: 'За сутки'},
-          d3: {name: 'За три дня'},
-          d7: {name: 'За неделю'},
-          d30: {name: 'За месяц'},
-          y: {name: 'За год'}
-        },
         sorts: {
           relevance: {name: 'По релевантности', icon: 'fa-arrows-alt-v'},
           date: {name: 'По дате', icon: 'fa-arrows-alt-v'},
@@ -29,10 +21,7 @@
       let {code, mode} = this.parse(this.activeSort);
       for (let key in this.sorts) {
         this.sorts[key].icon = this.setupIcon(key === code ? mode : null);
-
         this.sorts[key].mode = key === code ? mode : null;
-
-
       }
     },
     methods: {
@@ -54,9 +43,9 @@
       setupIcon(mode) {
         switch (mode) {
           case 'a':
-            return 'fa-sort-numeric-up';
+            return 'fa-sort-amount-up';
           case 'd':
-            return 'fa-sort-numeric-down';
+            return 'fa-sort-amount-down';
           default:
             return 'fa-arrows-alt-v'
         }

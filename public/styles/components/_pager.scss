@@ -1,5 +1,5 @@
 .pager {
-user-select: none;
+  user-select: none;
   .page {
     display: inline-block;
     padding: 3px 8px;
@@ -8,7 +8,7 @@ user-select: none;
       background-color: $gray-100;
       cursor: pointer;
     }
-    &.active{
+    &.active {
       background-color: $gray-200;
     }
   }
