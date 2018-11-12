@@ -12,6 +12,9 @@ export default {
     changeDrops(state, drops) {
       state.drops = drops
     },
+    clearSearch({commit}) {
+      commit('changeDrops', [])
+    }
   },
   actions: {
     async fetchCities({commit}, params) {
@@ -21,9 +24,6 @@ export default {
     async searchCity({commit}, params) {
       let cities = await citiesProvider.search(params);
       commit('changeDrops', cities)
-    },
-    clearSearch({commit}){
-      commit('changeDrops', [])
     }
   }
 }

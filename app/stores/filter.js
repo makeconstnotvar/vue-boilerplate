@@ -44,13 +44,14 @@ export default {
   },
   actions: {
     async fetchFilter({commit, state}, params) {
-      let filter = await filterProvider.fetch(params);
-      commit('changeFilter', filter)
+      let {selectedCity, items} = await filterProvider.fetch(params);
+      commit('changeSelectedCity', selectedCity);
+      commit('changeFilter', items);
     },
-    async fetchCity({commit}, id) {
+    /*async fetchCity({commit}, id) {
       let city = await filterProvider.fetchCity(id);
       commit('changeSelectedCity', city);
-    },
+    },*/
     getQuery({state}) {
       let items = Object.values(state.items);
       let checked = items.filter(item => Array.isArray(item.selected) ? !!item.selected.length : !!item.selected);

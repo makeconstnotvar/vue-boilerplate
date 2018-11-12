@@ -37,12 +37,22 @@
     components: {Period, Progress, FilterList, Pager, Search, VacancyItem, Sorting},
     created() {
       let {query, params} = this.$route;
+      this.updateStoreFromUrl(query, params);
       this.$store.dispatch('getQuery').then(fetchParams => {
         this.fetch({...fetchParams, ...query, ...params});
       });
 
     },
     methods: {
+      updateStoreFromUrl(query, params) {
+        let {sort, searchText, pr} = query;
+        if (sort)
+          this.$store.commit('changeSort', sort);
+        if (searchText)
+          this.$store.commit('changeSearchText', searchText);
+        if (pr)
+          this.$store.commit('changePeriod', pr);
+      },
       fetch(params, resultsOnly = false) {
         this.$store.dispatch('fetchVacancies', params);
         if (!resultsOnly)

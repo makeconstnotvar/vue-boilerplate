@@ -47,7 +47,7 @@
         }
       },
       apply(drop) {
-        this.$store.dispatch('changeSelectedCity', drop);
+        this.$store.commit('changeSelectedCity', drop);
         this.close();
         this.$router.push(this.from);
       },
@@ -56,7 +56,7 @@
         this.$store.dispatch('searchCity', this.searchText);
       },
       open() {
-        this.$store.dispatch('clearSearch');
+        this.$store.commit('clearSearch');
         document.body.addEventListener('click', this.clickOutside);
         this.isOpen = true;
       },

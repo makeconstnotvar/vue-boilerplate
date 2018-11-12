@@ -8,12 +8,18 @@ export default {
 };
 
 function serialize(obj) {
-  let filter = {};
+  let selectedCity = {}, items = {};
   for (let key in obj) {
     switch (key) {
       case 'city':
         let checkedCity = obj[key].find(c => c.checked) || {};
-        filter[key] = {
+        selectedCity = {
+          id: checkedCity.id,
+          name: checkedCity.name,
+          code: checkedCity.value,
+          count: checkedCity.count
+        };
+        items[key] = {
           title: 'Город',
           key: key,
           mode: 'radio',
@@ -28,7 +34,7 @@ function serialize(obj) {
         };
         break;
       case 'metro':
-        filter[key] = {
+        items[key] = {
           title: 'Метро',
           key: key,
           mode: 'checkbox',
@@ -44,7 +50,7 @@ function serialize(obj) {
         };
         break;
       case 'spec':
-        filter[key] = {
+        items[key] = {
           title: 'Профессиональная область',
           key: key,
           mode: 'checkbox',
@@ -59,7 +65,7 @@ function serialize(obj) {
         };
         break;
       case 'zp':
-        filter[key] = {
+        items[key] = {
           title: 'Зарплата',
           key: key,
           mode: 'checkbox',
@@ -74,7 +80,7 @@ function serialize(obj) {
         };
         break;
       case 'sch':
-        filter[key] = {
+        items[key] = {
           title: 'Тип занятости',
           key: key,
           mode: 'checkbox',
@@ -90,7 +96,7 @@ function serialize(obj) {
         break;
       case 'toe':
         let checkedtoes = obj[key].filter(c => c.checked);
-        filter[key] = {
+        items[key] = {
           title: 'График работы',
           key: key,
           mode: 'checkbox',
@@ -122,5 +128,5 @@ function serialize(obj) {
         filter[key] = obj[key];*/
     }
   }
-  return filter;
+  return {selectedCity, items};
 }
