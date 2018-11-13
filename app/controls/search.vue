@@ -16,7 +16,7 @@
 
   export default {
     name: 'Search',
-    props: ['text', 'city'],
+    props: ['text'],
     data() {
       return {
         currentPath:  this.$route.fullPath,

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Search @onSearch="changeText"></Search>
+    <Search @onSearch="changeText" :text="searchText"></Search>
     <div class="container">
       <h1>Список вакансий
         <Progress/>
@@ -41,7 +41,6 @@
       this.$store.dispatch('getQuery').then(fetchParams => {
         this.fetch({...fetchParams, ...query, ...params});
       });
-
     },
     methods: {
       updateStoreFromUrl(query, params) {
@@ -96,6 +95,7 @@
         pageSize: state => state.filter.pageSize,
         activePeriod: state => state.filter.period,
         activeSort: state => state.filter.sort,
+        searchText: state => state.filter.searchText,
       })
 
     }
