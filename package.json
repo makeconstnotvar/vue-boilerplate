@@ -4,6 +4,7 @@
   "description": "",
   "main": "start.js",
   "scripts": {
+    "gulp": "gulp watch",
     "start": "webpack --config webpack.config.client.js --hide-modules --watch",
     "build": "npm run build:client && npm run build:server",
     "build:client": "webpack --config webpack.config.client.js --hide-modules",
