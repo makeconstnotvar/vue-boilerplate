@@ -1,19 +1,22 @@
 <template>
-    <div class="pager d-flex" v-if="showPager">
-        <div class="pages d-flex align-items-strech">
-            <a class="fas fa-arrow-left page d-flex align-items-center" :class="{disabled:!isPrev}" @click="prev" :disabled="isPrev"></a>
-            <a v-for="page in pages" class="page d-flex align-items-center" :class="{active:(page===currentPage) }" @click="navigate(page)" v-text="page"></a>
-            <a class="fas fa-arrow-right page d-flex align-items-center" :class="{disabled:!isNext}" @click="next" :disabled="isNext"></a>
-        </div>
-        <div class="page-size ml-auto">
-            <a class="page size-select d-flex" @click="open">На странице <i class="align-self-center page-chevron fas" :class="[isOpen?'fa-angle-down':'fa-angle-up']"></i> <span class="flex-grow-1 text-right" v-text="pageSize"></span></a>
-            <div class="page-dropdown" :class="{opened:isOpen}" @mouseleave="close" @click.self="close">
-                <div class="page-dropdown-list">
-                    <a v-for="size in sizes" @click="changeSize(size)" v-text="size"></a>
-                </div>
-            </div>
-        </div>
+  <div class="pager d-flex" v-if="showPager">
+    <div class="pages d-flex align-items-strech">
+      <a class="fas fa-arrow-left page d-flex align-items-center" :class="{disabled:!isPrev}" @click="prev" :disabled="isPrev"></a>
+      <a v-for="page in pages" class="page d-flex align-items-center" :class="{active:(page===currentPage) }" @click="navigate(page)" v-text="page"></a>
+      <a class="fas fa-arrow-right page d-flex align-items-center" :class="{disabled:!isNext}" @click="next" :disabled="isNext"></a>
     </div>
+    <div class="page-size ml-auto">
+      <a class="page size-select d-flex"
+         @click="open">На странице <i class="align-self-center page-chevron fas"
+                                      :class="[isOpen?'fa-angle-down':'fa-angle-up']"></i> <span class="flex-grow-1 text-right"
+                                                                                                 v-text="pageSize"></span></a>
+      <div class="page-dropdown" :class="{opened:isOpen}" @mouseleave="close" @click.self="close">
+        <div class="page-dropdown-list">
+          <a v-for="size in sizes" @click="changeSize(size)" v-text="size"></a>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
   import _ from 'lodash'

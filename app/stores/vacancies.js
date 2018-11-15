@@ -3,6 +3,7 @@ import vacanciesProvider from '../providers/vacancies';
 export default {
   state: {
     items: [],
+    hints: [],
     count: 0
   },
   mutations: {
@@ -11,6 +12,9 @@ export default {
     },
     changeCount(state, count) {
       state.count = count;
+    },
+    changeHints(state, hints) {
+      state.hints = hints;
     },
   },
   actions: {
@@ -21,5 +25,9 @@ export default {
       commit('changeVacancies', data.vacancies);
       commit('changeCount', data.count);
     },
+    async fetchHits({dispatch, commit}, searchText) {
+      let hints = await vacanciesProvider.ferchHits(searchText);
+      commit('changeHints', hints.result);
+    }
   }
 }

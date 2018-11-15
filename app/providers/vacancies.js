@@ -5,9 +5,9 @@ export default {
     let response = await axios.get('https://jobrum.com/Job/Search', {params});
     return serialize(response.data.data);
   },
-  async suggest(searchText) {
-    let response = await axios.get('https://jobrum.com/misc/SearchJobNames', {searchText});
-    return response.data.result;
+  async ferchHits(searchText) {
+    let response = await axios.get('https://jobrum.com/misc/SearchJobNames', {params: {searchText}});
+    return response.data.data;
   }
 };
 
