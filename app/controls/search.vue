@@ -21,18 +21,18 @@
 
   export default {
     name: 'Search',
-    props: ['text'],
+    props: ['text', 'page'],
     components: {SelectBox},
     data() {
       return {
         isHintsOpen: false,
-        currentPath: this.$route.fullPath,
+        currentPath: this.$route.name,
         searchText: this.text || ''
       }
     },
     watch: {
       '$route'(to, from) {
-        this.currentPath = to.fullPath;
+        this.currentPath = to.name;
       }
     },
     methods: {

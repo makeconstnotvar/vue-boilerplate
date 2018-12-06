@@ -1,0 +1,15 @@
+.cities {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cities-item {
+  padding: 5px;
+  text-decoration: dashed;
+  cursor: pointer;
+  margin: 10px 10px 10px 0;
+
+  &:hover {
+    color: $indigo;
+  }
+}

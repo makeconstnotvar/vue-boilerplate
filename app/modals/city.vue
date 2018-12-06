@@ -10,7 +10,9 @@
         </div>
 
         <button @click="apply">Выбрать</button>
-        <a v-for="city in cities" @click="apply(city)">{{city.name}} ({{city.count}})</a>
+      <div class="cities">
+        <span class="cities-item" v-for="city in cities" @click="apply(city)">{{city.name}} ({{city.count}})</span>
+      </div>
     </div>
 </template>
 <script>
@@ -49,7 +51,10 @@
       apply(drop) {
         this.$store.commit('changeSelectedCity', drop);
         this.close();
-        this.$router.push(this.from);
+        this.$store.dispatch('getQuery').then(fetchParams => {
+          let {city = '', ...query} = fetchParams;
+          this.$router.push({name: this.from, params: {city: drop.code}, query});
+        });
       },
       search() {
         this.open();
