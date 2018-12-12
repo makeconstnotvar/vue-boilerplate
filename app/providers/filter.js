@@ -1,11 +1,24 @@
 import axios from 'axios';
 
-export default {
+let provider = {
   async fetch(params) {
     let response = await axios.get('https://jobrum.com/job/GetFilter', {params});
     return serialize(response.data.data);
+  },
+  async fetchRegionHints(params) {
+    let response = await axios.get('https://jobrum.com/Job/SearchRegionFilter', {params});
+    return response.data.data.map(d => ({id: d.value, name: d.name, count: d.count, code: d.altName}));
+  },
+  async fetchMetroHints(params) {
+    let response = await axios.get('https://jobrum.com/Job/GetFullMetroFilter', {params});
+    return response.data.data.map(d => ({id: d.value.id, name: d.name, count: d.count, color: d.value.color}));
+  },
+  async fetchProfHints(params) {
+    let response = await axios.get('https://jobrum.com/Job/GetFullProfAreaFilter', {params});
+    return response.data.data.map(d => ({id: d.value.id, name: d.name, count: d.count}));
   }
 };
+export default {provider}
 
 function serialize(obj) {
   let selectedCity = {}, items = {};
@@ -30,7 +43,15 @@ function serialize(obj) {
               count: c.count,
               value: c.value
             }
-          })
+          }),
+          extender: {
+            name: 'Выбрать другой',
+            edit: false,
+            open: false,
+            progress: false,
+            hints: [],
+            fetch: provider.fetchRegionHints
+          }
         };
         break;
       case 'metro':
@@ -46,7 +67,15 @@ function serialize(obj) {
               color: c.value.color,
               value: c.value.id
             }
-          })
+          }),
+          extender: {
+            name: 'Добавить',
+            edit: false,
+            open: false,
+            progress: false,
+            hints: [],
+            fetch: provider.fetchMetroHints
+          }
         };
         break;
       case 'spec':
@@ -61,7 +90,15 @@ function serialize(obj) {
               count: c.count,
               value: c.value.id
             }
-          })
+          }),
+          extender: {
+            name: 'Добавить',
+            edit: false,
+            open: false,
+            progress: false,
+            hints: [],
+            fetch: provider.fetchProfHints
+          }
         };
         break;
       case 'zp':

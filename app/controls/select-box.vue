@@ -1,28 +1,33 @@
 <template>
-  <div class="select-box-wrap">
-    <slot/>
-    <div class="select-box" :class="[ready?'opened':'']">
-      <div class="select-box-item" v-for="hint in hints" @click="select(hint)" v-text="hint"></div>
+  <div ref="selectbox" class="select-box-wrap" @blur="test">
+    <slot name="textbox"/>
+    <div class="select-box" :class="[ready ? 'opened' : '']">
+      <slot name="dropitem"/>
     </div>
   </div>
 </template>
 
 <script>
-
-
+  
+  
   export default {
     name: 'SelectBox',
     props: ['hints', 'isOpen'],
     data() {
       return {
         current: -1,
-        //ready: false
       }
     },
     methods: {
-      select(hint) {
-        this.hints.length = 0;
-        this.$emit('changeHint', hint)
+      documentClick(e) {
+        let el = this.$refs.selectbox;
+        let target = e.target;
+        if ((el !== target) && !el.contains(target)) {
+          console.log('external click')
+        }
+      },
+      test() {
+        console.log('select box hide')
       }
     },
     computed: {

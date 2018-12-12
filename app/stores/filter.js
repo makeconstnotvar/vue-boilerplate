@@ -1,20 +1,20 @@
 import filterProvider from '../providers/filter';
 import {cleanObject} from "./utils";
 
+let defaultState = {
+  items: {},
+  selectedCity: {name: 'не выбран'},
+  searchText: '',
+  page: 1,
+  pageSize: 10,
+  sort: 'ddate',
+  period: 'all'
+}
 export default {
-  state: {
-    items: {},
-    selectedCity: {name: 'не выбран'},
-    searchText: '',
-    page: 1,
-    pageSize: 10,
-    sort: 'ddate',
-    period: 'all'
-  },
+  state: {...defaultState},
   mutations: {
     changeSelectedCity(state, selected) {
       state.selectedCity = selected;
-      state.city = selected.code;
     },
     changeFilter(state, items) {
       state.items = items;
@@ -34,12 +34,15 @@ export default {
     changePeriod(state, period) {
       state.period = period;
     },
-    changeCity(state, code) {
-      state.city = code;
-    },
     changeSize(state, size) {
       state.page = 1;
       state.pageSize = size;
+    },
+    reset(state) {
+      Object.assign(state, defaultState, {selectedCity: state.selectedCity})
+    },
+    chageRegionHints(state, hints) {
+      state.items.city.extender.hints = hints;
     }
   },
   actions: {
@@ -48,10 +51,10 @@ export default {
       commit('changeSelectedCity', selectedCity);
       commit('changeFilter', items);
     },
-    /*async fetchCity({commit}, id) {
-      let city = await filterProvider.fetchCity(id);
-      commit('changeSelectedCity', city);
-    },*/
+    async fetchRegionHints({commit, state}, params) {
+      let hints = await filterProvider.fetchRegionHints(params);
+      commit('chageRegionHints', hints);
+    },
     getQuery({state}) {
       let items = Object.values(state.items);
       let checked = items.filter(item => Array.isArray(item.selected) ? !!item.selected.length : !!item.selected);
@@ -70,7 +73,7 @@ export default {
       queries.push({sort: state.sort});
       let query = queries.reduce((accumulator, query) => Object.assign(accumulator, query), {});
       query.city = query.city || state.selectedCity.code;
-
+  
       return cleanObject(query);
     }
   }

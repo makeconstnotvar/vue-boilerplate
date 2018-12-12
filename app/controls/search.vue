@@ -2,8 +2,13 @@
   <div class="search col center">
     <div class="container">
       <div class="row">
-        <SelectBox :hints="hints" :isOpen="isHintsOpen" @changeHint="changeHint">
-          <input @keyup.enter="search" @keyup="showHints" v-model="searchText" type="text" placeholder="Поисковый запрос">
+        <SelectBox :hints="hints" :isOpen="isHintsOpen">
+          <template slot="textbox">
+            <input @keyup.enter="search" @keyup="showHints" v-model="searchText" type="text" placeholder="Поисковый запрос">
+          </template>
+          <template slot="dropitem">
+            <div class="select-box-item" v-for="hint in hints" @click="changeHint(hint)" v-text="hint"></div>
+          </template>
         </SelectBox>
         <button @click="search">Поиск</button>
       </div>

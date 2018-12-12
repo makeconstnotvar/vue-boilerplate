@@ -3,12 +3,12 @@
     <Search @onSearch="changeText" :text="searchText"></Search>
     <div class="container">
       <h1>Список вакансий
-        <Progress/>
+        <Progress :visible="isProgress"/>
       </h1>
     </div>
     <div class="container d-flex">
       <div class="side-box">
-        <FilterList @onApply="refetch" @onChange="refetch"/>
+        <FilterList @onApply="refetch" @onChange="refetch" @onClear="clear"/>
       </div>
       <div class="grow">
         <div class="unselect mb10">
@@ -23,7 +23,7 @@
 </template>
 <script>
   import {mapState} from 'vuex';
-  import FilterList from '../controls/filter-list';
+  import FilterList from '../controls/filter';
   import Pager from '../controls/pager';
   import Search from '../controls/search';
   import VacancyItem from '../controls/vacancy-item';
@@ -64,6 +64,10 @@
           this.fetch(fetchParams, resultsOnly)
         });
       },
+      clear() {
+        this.$store.commit('reset');
+        this.refetch();
+      },
       changeText(text) {
         this.$store.commit('changeSearchText', text);
         this.refetch();
@@ -96,6 +100,7 @@
         activePeriod: state => state.filter.period,
         activeSort: state => state.filter.sort,
         searchText: state => state.filter.searchText,
+        isProgress: state => state.resultsProgress,
       })
 
     }
