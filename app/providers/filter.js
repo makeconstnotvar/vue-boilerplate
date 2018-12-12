@@ -18,7 +18,7 @@ let provider = {
     return response.data.data.map(d => ({id: d.value.id, name: d.name, count: d.count}));
   }
 };
-export default {provider}
+export default provider
 
 function serialize(obj) {
   let selectedCity = {}, items = {};

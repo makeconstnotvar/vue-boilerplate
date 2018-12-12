@@ -24,9 +24,16 @@
     methods: {
       toggleHint(item) {
         item.extender.edit = true;
+        item.extender.progress = true;
         let {fetch} = item.extender;
         this.$store.commit('changeItem', item);
-        this.$store.dispatch('fetchHints', {fetch});
+        this.$store.dispatch('fetchHints', {fetch}).then(() => {
+          item.extender.open = true;
+          item.extender.progress = false;
+          let t = this.$store.commit('changeItem', item);
+          let {input} = this.$refs.textbox;
+          input.focus();
+        });
       },
       showHints: _.debounce(function (item) {
         let {fetch, searchText} = item.extender;

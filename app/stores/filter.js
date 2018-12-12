@@ -51,8 +51,8 @@ export default {
       commit('changeSelectedCity', selectedCity);
       commit('changeFilter', items);
     },
-    async fetchRegionHints({commit, state}, params) {
-      let hints = await filterProvider.fetchRegionHints(params);
+    async fetchHints({commit, state}, {fetch, params}) {
+      let hints = await fetch(params);
       commit('chageRegionHints', hints);
     },
     getQuery({state}) {
