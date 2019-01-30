@@ -26,7 +26,10 @@ function serialize(data) {
         title: v.title,
         updateDate: v.updateDate,
         city: v.city.name,
-        employerName: employer.displayName
+        employerName: employer.displayName,
+        metro: v.metro,
+        timeTable: v.timeTable || [],
+        occupations: v.occupation && v.occupation.filter(occ => occ != 'Не указано') || []
       }
     })
   }

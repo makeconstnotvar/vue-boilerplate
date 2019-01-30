@@ -31,7 +31,6 @@
   import Sorting from "../controls/sorting";
   import Period from "../controls/period";
 
-
   export default {
     name: 'PageVacancies',
     components: {Period, Progress, FilterList, Pager, Search, VacancyItem, Sorting},
