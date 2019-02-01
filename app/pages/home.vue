@@ -22,7 +22,7 @@
         </div>
         <div class="container">
             <h2>Профобласти</h2>
-            <router-link class="rgap6" :key="spec.id" v-for="spec in specs" :to="{name:routeName, params:{city:selectedCity.code},query:{spec:spec.value}}">{{spec.name}} ({{spec.count}})</router-link>
+            <router-link class="mr-5" :key="spec.id" v-for="spec in specs" :to="{name:routeName, params:{city:selectedCity.code},query:{spec:spec.value}}">{{spec.name}} ({{spec.count}})</router-link>
         </div>
         <div class="container">
             <h2>Импорт резюме</h2>
@@ -80,11 +80,11 @@
         </div>
         <div class="container">
             <h2>Профессии</h2>
-            <router-link class="rgap6" :key="query.id" v-for="query in queries" :to="{name:routeName, params:{city:selectedCity.code},query:{searchText:query.name}}">{{query.name}}</router-link>
+            <router-link class="mr-5" :key="query.id" v-for="query in queries" :to="{name:routeName, params:{city:selectedCity.code},query:{searchText:query.name}}">{{query.name}}</router-link>
         </div>
         <div class="container">
             <h2>Регионы</h2>
-            <router-link class="rgap6" :key="region.id" v-for="region in regions" :to="{name:routeName, params:{city:region.code}}">{{region.name}} ({{region.count}})</router-link>
+            <router-link class="mr-5" :key="region.id" v-for="region in regions" :to="{name:routeName, params:{city:region.code}}">{{region.name}} ({{region.count}})</router-link>
         </div>
     </div>
 </template>

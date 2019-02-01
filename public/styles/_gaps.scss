@@ -1,0 +1,50 @@
+
+.separ-gap6 + .separ-gap6 {
+  margin-left: 6px;
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+
+.mr-auto {
+  margin-right: auto;
+}
+
+.w-auto {
+  width: auto;
+}
+
+@each $size in 0, 5, 10, 15, 20, 25, 30 {
+
+  .mt-#{$size} {
+    margin-top: #{$size}px;
+  }
+  .mr-#{$size} {
+    margin-right: #{$size}px;
+  }
+  .mb-#{$size} {
+    margin-bottom: #{$size}px;
+  }
+  .ml-#{$size} {
+    margin-left: #{$size}px;
+  }
+  .pt-#{$size} {
+    padding-top: #{$size}px;
+  }
+  .pr-#{$size} {
+    padding-right: #{$size}px;
+  }
+  .pb-#{$size} {
+    padding-bottom: #{$size}px;
+  }
+  .pl-#{$size} {
+    padding-left: #{$size}px;
+  }
+}
+
+@each $size in 0, 25, 40, 50, 60, 100 {
+  .w-#{$size} {
+    width: percentage($size/100);
+  }
+}

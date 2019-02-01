@@ -2,7 +2,7 @@
   <div class="d-inline-block">
     <template v-for="(station,idx) in stations">
       <Comma :index="idx"/>
-      <span class="rgap6 station-color" :style="{backgroundColor: station.color}"></span><span>{{station.name}}</span>
+      <span class="text-nowrap"><span class="mr-5 station-color" :style="{backgroundColor: station.color}"></span>{{station.name}}</span>
     </template>
   </div>
 </template>

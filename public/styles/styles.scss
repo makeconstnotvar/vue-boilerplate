@@ -1,15 +1,20 @@
+@import "reset";
 @import "fontawesome";
 @import "roboto";
+@import "bootstrap";
 @import "sticky";
 @import "flex";
+@import "colors";
 @import "zindex";
-@import "bootstrap";
 @import "components";
 @import "modals";
+@import "gaps";
+@import "buttons";
 
 html {
   font-family: "Roboto", "Arial", sans-serif;
   overflow-y: scroll;
+  color: $std-text;
 }
 
 body {
@@ -18,6 +23,7 @@ body {
 
 .undecorate {
   text-decoration: none;
+
   &:hover,
   &:focus,
   &:active {
@@ -31,14 +37,6 @@ body {
 
 .pointer {
   cursor: pointer;
-}
-
-.rgap6 {
-  margin-right: 6px;
-}
-
-.mb10 {
-  margin-bottom: 10px;
 }
 
 .unselect {

@@ -1,10 +1,10 @@
 <template>
   <div class="d-inline-flex">
-    <a class="dashed pointer rgap6" v-for="(sort, key) in sorts" @click="changeSort(key, sort)"> <i class="fas" :class="sort.icon"></i> {{sort.name}}</a>
+    <button class="btn btn-border mr-5" :class="{ active: sort.active }" v-for="(sort, key) in sorts" @click="changeSort(key, sort)"><i class="fas" :class="sort.icon"></i> {{sort.name}}</button>
   </div>
 </template>
 <script>
-
+  
   export default {
     name: 'Sorting',
     props: ['activeSort'],
@@ -22,6 +22,7 @@
       for (let key in this.sorts) {
         this.sorts[key].icon = this.setupIcon(key === code ? mode : null);
         this.sorts[key].mode = key === code ? mode : null;
+        this.sorts[key].active = this.sorts[key].mode !== null;
       }
     },
     methods: {
@@ -32,10 +33,10 @@
           if (key === code) {
             this.sorts[key].mode = this.changeMode(mode);
             result = this.sorts[key].mode + key;
-          }
-          else {
+          } else {
             this.sorts[key].mode = null;
           }
+          this.sorts[key].active = this.sorts[key].mode !== null;
           this.sorts[key].icon = this.setupIcon(this.sorts[key].mode)
         }
         this.$emit('changeSort', result);

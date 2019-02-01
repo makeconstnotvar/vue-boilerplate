@@ -1,20 +1,40 @@
 .periods {
   position: relative;
+
   .period-dropdown {
     display: none;
     position: absolute;
     width: 175px;
-    top: 0;
-    padding: 20px 0 31px 20px;
+    right: -15px;
+    padding: 42px 15px 31px 20px;
+
     &.opened {
       display: inline-block;
     }
   }
+
   .period-dropdown-item {
     display: block;
-    padding: 10px;
-    background: #fff;
-    outline: 1px solid #ccc;
+    padding: 5px 10px;
+    border: 1px solid $std-border-hover;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    background-color: $std-back;
+
+    &:first-of-type {
+      border-top-width: 1px;
+    }
+
+    &:last-of-type {
+      border-bottom-width: 1px;
+    }
+
+    &:hover {
+      background-color: $main-background;
+      color: $white;
+      cursor: pointer;
+    }
+
   }
 
 }

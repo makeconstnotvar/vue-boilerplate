@@ -1,8 +1,8 @@
 <template>
   <div>
     <Search @onSearch="changeText" :text="searchText"></Search>
-    <div class="container">
-      <h1>Список вакансий
+    <div class="container list-header mb-10">
+      <h1>Поиск вакансий
         <Progress :visible="isProgress"/>
       </h1>
     </div>
@@ -11,7 +11,7 @@
         <FilterList @onApply="refetch" @onChange="refetch" @onClear="clear"/>
       </div>
       <div class="grow">
-        <div class="unselect mb10">
+        <div class="unselect mb-10">
           <Sorting :activeSort="activeSort" @changeSort="changeSort"/>
           <Period :activePeriod="activePeriod" @changePeriod="changePeriod"/>
         </div>

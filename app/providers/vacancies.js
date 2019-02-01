@@ -27,9 +27,15 @@ function serialize(data) {
         updateDate: v.updateDate,
         city: v.city.name,
         employerName: employer.displayName,
+        employerId: employer.id,
         metro: v.metro,
         timeTable: v.timeTable || [],
-        occupations: v.occupation && v.occupation.filter(occ => occ != 'Не указано') || []
+        occupations: v.occupation && v.occupation.filter(occ => occ != 'Не указано') || [],
+        income: {
+          from: v.monthIncomeFrom,
+          to: v.monthIncomeTo,
+          currency: v.currencyRead.name,
+        }
       }
     })
   }
