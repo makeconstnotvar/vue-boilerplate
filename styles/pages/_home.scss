@@ -1,0 +1,25 @@
+.change-mode {
+  margin: 30px 0;
+  text-align: right;
+}
+
+.slogan {
+  h1 {
+    color: $main-high-color;
+    font-size: 80px;
+    margin: 50px 0;
+  }
+
+  h2 {
+    color: $main-dark-color;
+    font-size: 30px;
+    margin: 30px 0;
+  }
+}
+
+.promo-field {
+  background: linear-gradient(135deg, #49a6fe, #d7e7f8);
+  border-bottom: 1px solid #2a99ff;
+  border-top: 1px solid #2a99ff;
+  height: 300px;
+}

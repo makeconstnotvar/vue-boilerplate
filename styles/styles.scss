@@ -1,0 +1,44 @@
+@import "reset";
+@import "bootstrap";
+@import "awesome";
+@import "sticky";
+@import "flex";
+@import "colors";
+@import "zindex";
+@import "pages";
+@import "components";
+@import "modals";
+@import "gaps";
+@import "buttons";
+
+html {
+  font-family: "Arial", sans-serif;
+  overflow-y: scroll;
+  color: $std-text;
+}
+
+body {
+  margin: 0;
+}
+
+.undecorate {
+  text-decoration: none;
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+  }
+}
+
+.dashed {
+  border-bottom: 1px dashed;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.unselect {
+  user-select: none;
+}

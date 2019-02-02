@@ -1,20 +1,25 @@
 <template>
-  <div class="search col center">
-    <div class="container">
-      <div class="row">
-        <SelectBox :hints="hints" :isOpen="isHintsOpen">
-          <template slot="textbox">
-            <input @keyup.enter="search" @keyup="showHints" v-model="searchText" type="text" placeholder="Поисковый запрос">
-          </template>
-          <template slot="dropitem">
-            <div class="select-box-item" v-for="hint in hints" @click="changeHint(hint)" v-text="hint"></div>
-          </template>
-        </SelectBox>
-        <button @click="search">Поиск</button>
+  <div class="container d-flex align-self-center align-items-center">
+    <div class="w-60 pr-20">
+      <div>Ключевые слова</div>
+      <SelectBox :hints="hints" :isOpen="isHintsOpen">
+        <template slot="textbox">
+          <input class="form-control" @keyup.enter="search" @keyup="showHints" v-model="searchText" type="text" placeholder="Поисковый запрос">
+        </template>
+        <template slot="dropitem">
+          <div class="select-box-item" v-for="hint in hints" @click="changeHint(hint)" v-text="hint"></div>
+        </template>
+      </SelectBox>
+      <div>Примеры: <span class="dashed">курьер</span>,<span class="dashed">охранник</span>,<span class="dashed">тестировщик</span></div>
+    </div>
+    <div class="d-flex w-40 align-items-center">
+      <div class="flex-grow-1 pr-20">
+        <div>Город</div>
+        <input class="form-control" v-model="selectedCity.name" @click="showModalCity" type="text" placeholder="Название города">
+        <div>Выбрать: <span @click="showModalCity" class="dashed">город</span></div>
       </div>
-      <div class="row">
-        Ваш город: "{{selectedCity.name}}"
-        <router-link :to="`/modal/city?from=${currentPath}`">изменить</router-link>
+      <div>
+        <button class="btn btn-primary" @click="search">Поиск</button>
       </div>
     </div>
   </div>
@@ -51,6 +56,9 @@
       changeHint(hint) {
         this.isHintsOpen = false;
         this.searchText = hint;
+      },
+      showModalCity() {
+        console.log('модал города')
       }
     },
     computed: {

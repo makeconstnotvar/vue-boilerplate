@@ -23,9 +23,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(compression());
 
 app.use('/build', express.static(path.join(__dirname, 'build')));
-app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
-app.use('/fonts', express.static(path.join(__dirname, 'public/fonts')));
-app.use('/styles', express.static(path.join(__dirname, 'public/styles')));
+//app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
+app.use('/fonts', express.static(path.join(__dirname, 'fonts')));
 app.use('/config', (req, res) => {
   res.send(config.client);
 });

@@ -2,6 +2,7 @@ let gulp = require('gulp'),
   path = require('path'),
   sourcemaps = require('gulp-sourcemaps'),
   inject = require('gulp-inject'),
+  uglify = require('gulp-uglify'),
   concat = require('gulp-concat'),
   sass = require('gulp-sass');
 
@@ -15,7 +16,7 @@ function tildaResolver(url, prev, done) {
 let destination = 'build';
 
 gulp.task('css', function () {
-  return gulp.src(['public/styles/styles.scss'])
+  return gulp.src(['styles/styles.scss'])
     .pipe(sourcemaps.init())
     .pipe(sass({importer: tildaResolver}).on('error', sass.logError))
     .pipe(concat('styles.css'))
@@ -23,10 +24,26 @@ gulp.task('css', function () {
     .pipe(gulp.dest(destination))
 });
 
+gulp.task('fonts', function () {
+  return gulp.src(['node_modules/@fortawesome/fontawesome-free/webfonts/*.woff'])
+    .pipe(gulp.dest('fonts'))
+});
+gulp.task('libs', function () {
+  return gulp.src([
+    'node_modules/lodash/lodash.js',
+    'node_modules/vue/dist/vue.runtime.js',
+    'node_modules/vuex/dist/vuex.js',
+    'node_modules/vue-router/dist/vue-router.js'
+  ])
+    .pipe(uglify())
+    .pipe(concat('libs.js'))
+    .pipe(gulp.dest(destination))
+});
+
 gulp.task('watch', gulp.series('css', function watch() {
   return gulp.watch([
-    'public/styles/**/*.scss'
+    'styles/**/*.scss'
   ], gulp.series('css'))
 }));
 
-gulp.task('default', gulp.series('css'));
+gulp.task('default', gulp.series('css', 'fonts'));

@@ -1,0 +1,50 @@
+.nav-bar {
+  border-bottom: 1px solid #c0c8cf;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #eeeff4;
+  min-width: 320px;
+
+  & > .container {
+    height: 60px;
+  }
+}
+
+.nav-item {
+  font-size: 18px;
+  color: $main-dark-color;
+  text-decoration: none;
+  transition: color 300ms;
+
+  &:after {
+    content: '';
+    border-right: 1px solid $main-dark-color;
+    padding-left: 20px;
+  }
+
+  &:hover {
+    color: $main-high-color;
+    transition: color 300ms;
+  }
+
+  &:last-of-type:after {
+    content: none;
+  }
+}
+
+.nav-brand {
+  font-size: 30px;
+  color: $main-dark-color;
+  text-decoration: none;
+  transition: color 300ms;
+
+  &:hover {
+    color: $main-high-color;
+    transition: color 300ms;
+  }
+}
+
+main {
+  padding-top: 60px;
+}
