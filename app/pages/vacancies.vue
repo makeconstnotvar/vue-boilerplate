@@ -1,11 +1,16 @@
 <template>
   <div>
-    <Search @onSearch="changeText" :text="searchText"></Search>
-    <div class="container list-header mb-10">
-      <h1>Поиск вакансий
-        <Progress :visible="isProgress"/>
-      </h1>
+    <div class="search-field d-flex">
+      <Search @onSearch="changeText" :text="searchText"></Search>
     </div>
+    <div class="list-header mb-20">
+      <div class="container">
+        <h1>Поиск вакансий
+          <Progress :visible="isProgress"/>
+        </h1>
+      </div>
+    </div>
+
     <div class="container d-flex">
       <div class="side-box">
         <FilterList @onApply="refetch" @onChange="refetch" @onClear="clear"/>

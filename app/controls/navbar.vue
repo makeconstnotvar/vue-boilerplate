@@ -1,12 +1,12 @@
 <template>
   <nav class="nav-bar shadow">
     <div class="container d-flex align-items-center">
-      <router-link class="nav-brand mr-20" to="/">JOBRUM</router-link>
+      <router-link class="nav-brand hover-high mr-20" to="/">JOBRUM</router-link>
       <i class="fas fa-chevron-right mr-20"></i>
-      <router-link v-for="item in items" class="nav-item mr-20" :to="item.link">{{item.name}}</router-link>
+      <router-link :key="idx" v-for="(item,idx) in items" class="nav-item hover-high mr-20" :to="item.link">{{item.name}}</router-link>
       <div class="d-flex ml-auto">
-        <router-link class="nav-item" to="/login">Логин</router-link>
-        <router-link class="nav-item" to="/registration">Регистрация</router-link>
+        <router-link class="nav-item hover-high mr-20" to="/login">Логин</router-link>
+        <router-link class="nav-item hover-high" to="/registration">Регистрация</router-link>
       </div>
     </div>
   </nav>

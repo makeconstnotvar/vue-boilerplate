@@ -42,3 +42,30 @@ body {
 .unselect {
   user-select: none;
 }
+
+.white {
+  color: $white;
+  border-color: $white;
+}
+
+.hover-dark {
+  cursor: pointer;
+  transition: color 300ms;
+
+  &:hover {
+    color: $main-dark-color;
+    transition: color 300ms;
+
+  }
+}
+
+.hover-high {
+  cursor: pointer;
+  transition: color 300ms;
+
+  &:hover {
+    color: $main-high-color;
+    transition: color 300ms;
+
+  }
+}

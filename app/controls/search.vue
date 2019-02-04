@@ -1,8 +1,8 @@
 <template>
   <div class="container d-flex align-self-center align-items-center">
     <div class="w-60 pr-20">
-      <div>Ключевые слова</div>
-      <SelectBox :hints="hints" :isOpen="isHintsOpen">
+      <div class="search-label white mb-1">Ключевые слова</div>
+      <SelectBox class="mb-1" :hints="hints" :isOpen="isHintsOpen">
         <template slot="textbox">
           <input class="form-control" @keyup.enter="search" @keyup="showHints" v-model="searchText" type="text" placeholder="Поисковый запрос">
         </template>
@@ -10,13 +10,18 @@
           <div class="select-box-item" v-for="hint in hints" @click="changeHint(hint)" v-text="hint"></div>
         </template>
       </SelectBox>
-      <div>Примеры: <span class="dashed">курьер</span>,<span class="dashed">охранник</span>,<span class="dashed">тестировщик</span></div>
+      <div class="white">Примеры:
+        <template v-for="(sample,idx) in samples">
+          <span class="dashed hover-dark">{{sample}}</span>
+          <Comma :index="idx" :total="samples.length"/>
+        </template>
+      </div>
     </div>
     <div class="d-flex w-40 align-items-center">
       <div class="flex-grow-1 pr-20">
-        <div>Город</div>
-        <input class="form-control" v-model="selectedCity.name" @click="showModalCity" type="text" placeholder="Название города">
-        <div>Выбрать: <span @click="showModalCity" class="dashed">город</span></div>
+        <div class="search-label white mb-1">Город</div>
+        <input class="form-control mb-1" v-model="selectedCity.name" @click="showModalCity" type="text" placeholder="Название города">
+        <div class="white ">Выбрать: <span @click="showModalCity" class="dashed hover-dark">город</span></div>
       </div>
       <div>
         <button class="btn btn-primary" @click="search">Поиск</button>
@@ -27,17 +32,19 @@
 <script>
   import {mapState} from 'vuex';
   import SelectBox from './select-box';
+  import Comma from './comma';
   import _ from 'lodash';
 
   export default {
     name: 'Search',
     props: ['text', 'page'],
-    components: {SelectBox},
+    components: {SelectBox, Comma},
     data() {
       return {
         isHintsOpen: false,
         currentPath: this.$route.name,
-        searchText: this.text || ''
+        searchText: this.text || '',
+        samples: ['курьер', 'охранник', 'тестировщик']
       }
     },
     watch: {

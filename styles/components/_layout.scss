@@ -5,8 +5,15 @@
 }
 
 .list-header {
-  background: $std-back;
+  background: #eeeff4;;
   height: 80px;
   display: flex;
   align-items: center;
+}
+
+.search-field {
+  height: 200px;
+  background: linear-gradient(135deg, #49a6fe, #d7e7f8);
+  border-bottom: 1px solid #2a99ff;
+  border-top: 1px solid #2a99ff;
 }

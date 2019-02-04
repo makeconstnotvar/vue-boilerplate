@@ -15,7 +15,7 @@
   width: auto;
 }
 
-@each $size in 0, 5, 10, 15, 20, 25, 30 {
+@each $size in 0, 6, 10, 15, 20, 25, 30 {
 
   .mt-#{$size} {
     margin-top: #{$size}px;

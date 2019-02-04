@@ -1,9 +1,25 @@
 <template>
-  <span v-if="index !== 0">, </span>
+  <span v-if="mode==='after' && index+1 !== total">, </span>
 </template>
 <script>
   export default {
     name: "Comma",
-    props: ['index']
+    props: {
+      index: {
+        type: Number,
+        default: 0
+      },
+      total: {
+        type: Number,
+        default: Infinity
+      },
+      mode: {
+        type: String,
+        default: 'after',
+        validator(value) {
+          return value === 'after' || value === 'before'
+        }
+      }
+    }
   }
 </script>

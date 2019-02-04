@@ -4,6 +4,7 @@ import vacancies from './stores/vacancies';
 import filter from './stores/filter';
 import cities from './stores/cities';
 import home from './stores/home';
+import modals from './stores/modals';
 
 Vue.use(Vuex);
 
@@ -57,7 +58,8 @@ export function createStore () {
       vacancies,
       filter,
       cities,
-      home
+      home,
+      modals
     }
   });
   return store;
