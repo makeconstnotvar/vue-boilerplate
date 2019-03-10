@@ -1,5 +1,5 @@
 <template>
-  <div ref="selectbox" class="select-box-wrap" @blur="test">
+  <div ref="selectbox" class="select-box-wrap">
     <slot name="textbox"/>
     <div class="select-box" :class="[ready ? 'opened' : '']">
       <slot name="dropitem"/>
@@ -8,8 +8,8 @@
 </template>
 
 <script>
-  
-  
+
+
   export default {
     name: 'SelectBox',
     props: ['hints', 'isOpen'],
@@ -18,21 +18,27 @@
         current: -1,
       }
     },
+    destroyed() {
+      document.removeEventListener('click', this.documentClick)
+    },
     methods: {
       documentClick(e) {
         let el = this.$refs.selectbox;
         let target = e.target;
         if ((el !== target) && !el.contains(target)) {
-          console.log('external click')
+          this.$emit('onClose');
         }
-      },
-      test() {
-        console.log('select box hide')
       }
     },
     computed: {
       ready: function () {
-        return this.hints.length > 0 && this.isOpen
+        console.log('ready check');
+        let isReady = this.hints.length > 0 && this.isOpen;
+        if (isReady)
+          document.addEventListener('click', this.documentClick);
+        else
+          document.removeEventListener('click', this.documentClick)
+        return isReady;
       }
     }
   }

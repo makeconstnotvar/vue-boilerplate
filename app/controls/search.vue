@@ -2,7 +2,7 @@
   <div class="container d-flex align-self-center align-items-center">
     <div class="w-60 pr-20">
       <div class="search-label white mb-1">Ключевые слова</div>
-      <SelectBox class="mb-1" :hints="hints" :isOpen="isHintsOpen">
+      <SelectBox class="mb-1" :hints="hints" :isOpen="isHintsOpen" @onClose="hideHints">
         <template slot="textbox">
           <input class="form-control" @keyup.enter="search" @keyup="showHints" v-model="searchText" type="text" placeholder="Поисковый запрос">
         </template>
@@ -12,7 +12,7 @@
       </SelectBox>
       <div class="white">Примеры:
         <template v-for="(sample,idx) in samples">
-          <span class="dashed hover-dark">{{sample}}</span>
+          <span class="dashed hover-dark" @click="setSample(sample)">{{sample}}</span>
           <Comma :index="idx" :total="samples.length"/>
         </template>
       </div>
@@ -57,15 +57,22 @@
         this.$emit('onSearch', this.searchText);
       },
       showHints: _.debounce(function () {
-        this.isHintsOpen = true;
-        this.$store.dispatch('fetchHits', this.searchText)
+        this.$store.dispatch('fetchHits', this.searchText).then(() => {
+          this.isHintsOpen = true;
+        })
       }, 300),
+      hideHints() {
+        this.isHintsOpen = false;
+      },
       changeHint(hint) {
         this.isHintsOpen = false;
         this.searchText = hint;
       },
       showModalCity() {
         console.log('модал города')
+      },
+      setSample(text) {
+        this.searchText = text;
       }
     },
     computed: {

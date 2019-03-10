@@ -114,10 +114,10 @@
       }
     },
     created() {
-      this.$store.dispatch('fetchSeekerSpecs');
-      this.$store.dispatch('fetchSeekerQueries');
-      this.$store.dispatch('fetchEmployerSpecs');
-      this.$store.dispatch('fetchEmployerQueries');
+      //this.$store.dispatch('fetchSeekerSpecs');
+      //this.$store.dispatch('fetchSeekerQueries');
+      //this.$store.dispatch('fetchEmployerSpecs');
+      //this.$store.dispatch('fetchEmployerQueries');
       // this.$store.dispatch('fetchStatistic');
     },
     methods: {
