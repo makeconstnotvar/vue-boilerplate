@@ -1,31 +1,33 @@
 <template>
   <div>
-    <div class="container">
-      <div class="change-mode">
-        <a class="dashed" @click="changeMode('seeker')">Соискатель</a> \ <a class="dashed" @click="changeMode('employer')">Работодатель</a>
+    <div class="main-block">
+      <div class="container">
+        <div class="change-mode">
+          <a class="dashed" @click="changeMode('seeker')">Соискатель</a> | <a class="dashed" @click="changeMode('employer')">Работодатель</a>
+        </div>
+        <div class="slogan">
+          <h1>JOBRUM</h1>
+          <h2>Интеллектуальный поиск работы и сотрудников</h2>
+        </div>
       </div>
-      <div class="slogan">
-        <h1>JOBRUM</h1>
-        <h2>Интеллектуальный поиск работы и сотрудников</h2>
+      <div class="promo-field d-flex">
+        <Search @onSearch="toSearch"/>
       </div>
-    </div>
-    <div class="promo-field d-flex">
-      <Search @onSearch="toSearch"/>
-    </div>
-    <div class="container">
-      <a @click="toEnter">Создать резюме</a>
-      <a @click="toLoad">Загрузить резюме</a>
-      <div v-if="showEnter">
-        <input class="w-50" v-model="email" type="text" placeholder="email">
-        <input class="w-50" v-model="password" type="text" placeholder="password">
-        <button @click="enter">Создать</button>
-      </div>
-      <div v-if="showLoad">
-        <label for="resumeUrl">Ссылка на ваше резюме</label>
-        <input id="resumeUrl" class="w-50" v-model="email" type="text" placeholder="url">
-        <span class="dashed">Например: https://www.superjob.ru/resume/massazhistka-39163216.html</span>
-        <input class="w-50" v-model="password" type="text" placeholder="email">
-        <button @click="load">Загрузить</button>
+      <div class="container">
+        <a @click="toEnter">Создать резюме</a>
+        <a @click="toLoad">Загрузить резюме</a>
+        <div v-if="showEnter">
+          <input class="w-50" v-model="email" type="text" placeholder="email">
+          <input class="w-50" v-model="password" type="text" placeholder="password">
+          <button @click="enter">Создать</button>
+        </div>
+        <div v-if="showLoad">
+          <label for="resumeUrl">Ссылка на ваше резюме</label>
+          <input id="resumeUrl" class="w-50" v-model="email" type="text" placeholder="url">
+          <span class="dashed">Например: https://www.superjob.ru/resume/massazhistka-39163216.html</span>
+          <input class="w-50" v-model="password" type="text" placeholder="email">
+          <button @click="load">Загрузить</button>
+        </div>
       </div>
     </div>
     <div class="container">
@@ -36,32 +38,70 @@
       <h2>Импорт резюме</h2>
       <div>Это быстро и бесплатно. Не нужно устанавливать ПО.</div>
     </div>
-    <div class="container">
-      <h2>Интеллектуальный автопоиск вакансий</h2>
-      <div>Получайте на почту автоматически подобранные для Вас вакансии лучших компаний.</div>
-    </div>
-    <div class="container">
-      <h2>Поиск вакансий из соцсетей</h2>
-      <div>Не нужно просматривать каждую соцсеть в отдельности. Ищите у нас в одном окне.</div>
-    </div>
-    <div class="container">
-      <h2>Узнайте все о будущем работодателе</h2>
-      <div>Узнайте всю правду: владельцы, контракты, связи, инфоповоды, отзывы.</div>
-    </div>
-    <div class="container">
-      <h2>Ваши данные надежно защищены</h2>
-      <div>Ваши данные защищены. Мы соответствуем требованиям 152-ФЗ «О персональных данных».</div>
-    </div>
-    <div class="container">
-      <h2>Советник по карьере</h2>
-      <div>Разместите свое резюме и получите бесплатную консультацию.</div>
-    </div>
-    <div class="container">
-      <h2>Советник по навыкам</h2>
-      <div>Советник анализирует вакансии и выдает автоматические рекомендации по карьерному росту пользователям. Учитываются нюансы русских написаний навыков и на иностранных языках. Пользователю
-        рекомендуется изучить дополнительные навыки для
-        продвижения по карьере. Анализируются как ключевые навыки, так и профессиональные области, сферы деятельности, город, опыт, тип занятости пользователя, и уровень предполагаемого дохода.
+
+    <div class="network-box">
+      <div class="network-box-img img1"></div>
+      <div class="network-box-wrap">
+        <div class="network-box-text">
+          <h2 class="network-box-title">Интеллектуальный автопоиск вакансий</h2>
+          <div class="network-box-desc">Получайте на почту автоматически подобранные для Вас вакансии лучших компаний.</div>
+        </div>
       </div>
+    </div>
+    <div class="network-box">
+      <div class="network-box-img img2"></div>
+      <div class="network-box-wrap">
+        <div class="network-box-text">
+          <h2 class="network-box-title">Поиск вакансий из соцсетей</h2>
+          <div class="network-box-desc">Не нужно просматривать каждую соцсеть в отдельности. Ищите у нас в одном окне.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="network-box">
+      <div class="network-box-img img1"></div>
+      <div class="network-box-wrap">
+        <div class="network-box-text">
+          <h2 class="network-box-title">Узнайте все о будущем работодателе</h2>
+          <div class="network-box-desc">Узнайте всю правду: владельцы, контракты, связи, инфоповоды, отзывы.</div>
+        </div>
+      </div>
+    </div>
+    <div class="network-box">
+      <div class="network-box-img img2"></div>
+      <div class="network-box-wrap">
+        <div class="network-box-text">
+          <h2 class="network-box-title">Ваши данные надежно защищены</h2>
+          <div class="network-box-desc">Ваши данные защищены. Мы соответствуем требованиям 152-ФЗ «О персональных данных».</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="network-box">
+      <div class="network-box-img img1"></div>
+      <div class="network-box-wrap">
+        <div class="network-box-text">
+          <h2 class="network-box-title">Советник по карьере</h2>
+          <div class="network-box-desc">Разместите свое резюме и получите бесплатную консультацию.</div>
+        </div>
+      </div>
+    </div>
+    <div class="network-box">
+      <div class="network-box-img img2"></div>
+      <div class="network-box-wrap">
+        <div class="network-box-text">
+          <h2 class="network-box-title">Советник по навыкам</h2>
+          <div class="network-box-desc">Советник анализирует вакансии и выдает автоматические рекомендации по карьерному росту пользователям. Учитываются нюансы русских написаний навыков и на
+            иностранных
+            языках. Пользователю
+            рекомендуется изучить дополнительные навыки для
+            продвижения по карьере. Анализируются как ключевые навыки, так и профессиональные области, сферы деятельности, город, опыт, тип занятости пользователя, и уровень предполагаемого дохода.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
       <router-link to="/registration">Зарегистрироваться</router-link>
     </div>
     <div class="container">

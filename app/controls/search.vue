@@ -13,7 +13,7 @@
       <div class="white">Примеры:
         <template v-for="(sample,idx) in samples">
           <span class="dashed hover-dark" @click="setSample(sample)">{{sample}}</span>
-          <Comma :index="idx" :total="samples.length"/>
+          <Comma :index="idx" :total="samples.length"></Comma>
         </template>
       </div>
     </div>

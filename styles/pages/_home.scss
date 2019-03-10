@@ -23,3 +23,72 @@
   border-bottom: 1px solid #2a99ff;
   border-top: 1px solid #2a99ff;
 }
+
+.main-block {
+  min-height: 100vh;
+  background: #f0f2f7;
+}
+
+.network-box {
+  display: flex;
+  align-items: center;
+  height: 390px;
+  margin-bottom: 100px;
+}
+
+.network-box:nth-of-type(2n) {
+  flex-direction: row-reverse;
+}
+
+.network-box-img {
+  background-size: cover;
+  width: 50%;
+  height: 100%;
+  background-position: 100%;
+}
+
+.network-box-wrap {
+  width: 50%;
+  height: 100%;
+  position: relative;
+}
+
+.network-box-text {
+  border-bottom-right-radius: 70px;
+  border-top-left-radius: 70px;
+  background-color: #fff;
+  box-shadow: 0 7px 24px 2px rgba(0, 147, 229, .15);
+  height: 70%;
+  position: absolute;
+  left: -150px;
+  right: 30px;
+  padding: 30px 50px 30px 100px;
+  top: 15%;
+}
+
+.network-box:nth-of-type(2n) .network-box-text {
+  text-align: right;
+  left: 30px;
+  right: -150px;
+  padding: 30px 100px 30px 50px;
+}
+
+.network-box-title {
+  color: #2a99ff;
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+.network-box-desc {
+  color: #3b5978;
+  font-size: 20px;
+}
+
+.img1 {
+  background-image: url(/images/jobrum_search.jpg);
+}
+
+.img2 {
+  background-image: url(/images/jobrum_cv.jpg);
+}
+
