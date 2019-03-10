@@ -2,7 +2,6 @@ const path = require('path');
 const VueLoaderPlugin = require("vue-loader").VueLoaderPlugin;
 
 module.exports = {
-
   mode: 'development',
   module: {
     rules: [
@@ -10,23 +9,6 @@ module.exports = {
         test: /\.vue$/,
         loader: 'vue-loader'
       },
-      /*{
-        test: /\.js?$/,
-        //exclude: /node_modules/,
-        use:{
-          loader: 'babel-loader',
-          options:{
-            presets: [
-              "@babel/preset-env"
-            ],
-            plugins:[
-              '@babel/plugin-proposal-object-rest-spread',
-              '@babel/plugin-transform-runtime'
-            ]
-          }
-        }
-
-      },*/
     ]
   },
   resolve: {
@@ -37,5 +19,4 @@ module.exports = {
     ]
   },
   plugins: [new VueLoaderPlugin()],
-
 };

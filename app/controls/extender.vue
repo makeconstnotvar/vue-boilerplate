@@ -16,7 +16,8 @@
 <script>
   import SelectBox from './select-box';
   import Progress from './progress';
-  
+  import _ from 'lodash';
+
   export default {
     name: "Extender",
     components: {SelectBox, Progress},

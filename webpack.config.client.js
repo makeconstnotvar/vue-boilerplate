@@ -1,7 +1,7 @@
 const merge = require("webpack-merge");
 const path = require('path');
 const baseConfig = require("./webpack.config.base");
-const VueSSRClientPlugin = require('vue-server-renderer/client-plugin');
+//const VueSSRClientPlugin = require('vue-server-renderer/client-plugin');
 
 module.exports = merge(baseConfig, {
   entry: {

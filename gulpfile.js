@@ -46,4 +46,4 @@ gulp.task('watch', gulp.series('css', function watch() {
   ], gulp.series('css'))
 }));
 
-gulp.task('default', gulp.series('css', 'fonts'));
+gulp.task('default', gulp.series('css', 'fonts','libs'));
