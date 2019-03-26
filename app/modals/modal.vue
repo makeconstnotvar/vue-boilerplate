@@ -3,9 +3,7 @@
     <div class="modal-backdrop" :class="{'show':isVisible}" :style="{display:isVisible?'block':'none'}"></div>
     <div class="modal" tabindex="-1" :style="{display:isVisible?'block':'none'}" @click.self="hide">
       <div class="modal-dialog">
-        <div class="modal-content">22
-          <slot/>
-        </div>
+        <div id="modal-root"/>
       </div>
     </div>
   </section>

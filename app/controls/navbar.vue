@@ -27,7 +27,7 @@
     },
     methods: {
       showLogin() {
-        this.$store.commit('showModal');
+        this.$store.commit('showTestModal');
       }
     }
   }

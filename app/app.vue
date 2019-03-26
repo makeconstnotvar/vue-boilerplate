@@ -13,8 +13,6 @@
   import Navbar from "./controls/navbar";
   import Footer from "./controls/footer";
   import Modal from "./modals/modal";
-
-
   export default {
     name: 'App',
     components: {Navbar, Footer, Modal}
