@@ -5,17 +5,18 @@
       <router-view/>
     </main>
     <Footer/>
-    <Modals/>
+    <Modal/>
   </div>
 </template>
 <script>
 
   import Navbar from "./controls/navbar";
   import Footer from "./controls/footer";
-  import Modals from "./modals/placeholder";
+  import Modal from "./modals/modal";
+
 
   export default {
     name: 'App',
-    components: {Navbar, Footer, Modals}
+    components: {Navbar, Footer, Modal}
   };
 </script>

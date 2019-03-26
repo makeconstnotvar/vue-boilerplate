@@ -14,7 +14,16 @@
   </div>
 </template>
 <script>
+  import Modal from './modal';
+  import {mapState} from 'vuex';
+
   export default {
     name: 'ModalTest',
+    components: {Modal},
+    computed: {
+      ...mapState({
+        isVisible: state => state.modals.isVisible,
+      })
+    },
   }
 </script>

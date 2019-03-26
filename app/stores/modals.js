@@ -3,10 +3,10 @@ export default {
     isVisible: false
   },
   mutations: {
-    show(state) {
+    showModal(state) {
       state.isVisible = true;
     },
-    hide(state) {
+    hideModal(state) {
       state.isVisible = false;
     }
   }

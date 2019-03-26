@@ -5,7 +5,7 @@
       <i class="fas fa-chevron-right mr-20"></i>
       <router-link :key="idx" v-for="(item,idx) in items" class="nav-item hover-high mr-20" :to="item.link">{{item.name}}</router-link>
       <div class="d-flex ml-auto">
-        <router-link class="nav-item hover-high mr-20" to="/login">Логин</router-link>
+        <span class="nav-item hover-high mr-20" @click="showLogin">Логин</span>
         <router-link class="nav-item hover-high" to="/registration">Регистрация</router-link>
       </div>
     </div>
@@ -23,6 +23,11 @@
           {name: 'Проекты', link: '/resumes'},
           {name: 'Компании', link: '/resumes'},
         ]
+      }
+    },
+    methods: {
+      showLogin() {
+        this.$store.commit('showModal');
       }
     }
   }
