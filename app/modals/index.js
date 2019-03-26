@@ -1,21 +1,32 @@
-import ModalTest from '../modals/test.vue'
-import Vue from 'vue'
-
-const modals = {
-  items: [
-    ModalTest
-  ],
+const Modals = {
   instances: {},
-  connect(store) {
-    this.items.forEach(item => {
-      item.store = store;
-      let Component = Vue.extend(item);
-      let instance = new Component();
-      this.instances[item.name] = instance;
-    })
-  },
-  mount(name) {
-    this.instances[name].$mount('#modal-root');
+  install(Vue, {store}) {
+    if (!store) {
+      throw new Error("Please provide vuex store.");
+    }
+    Vue.prototype.$showModal = function (componentObj) {
+      componentObj.store = store;
+      let name = componentObj.name;
+      let instance = Modals.instances[name];
+      if (!instance) {
+        let Component = Vue.extend(componentObj);
+        instance = new Component();
+        Modals.instances[name] = instance;
+      }
+      let ref = instance.$mount("#modal-root");
+      ref.$el.id = "modal-root";
+      store.commit("showModal");
+    };
+
+    Vue.prototype.$hideModal = function () {
+      store.commit("hideModal");
+    };
+
+    Vue.prototype.$removeModal = function (componentObj) {
+      let instance = Modals.instances[componentObj.name];
+      store.commit("hideModal");
+      instance.$destroy();
+    }
   }
 };
-export {modals}
+export {Modals}

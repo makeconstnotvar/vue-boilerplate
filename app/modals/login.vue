@@ -1,9 +1,9 @@
 <template>
   <div class="modal-content">
     <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLiveLabel">Modal title</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">×</span>
+      <h5 class="modal-title">Modal title</h5>
+      <button class="close" @click="hide">
+        <span>×</span>
       </button>
     </div>
     <div class="modal-body">
@@ -20,7 +20,7 @@
   import {mapState} from 'vuex';
 
   export default {
-    name: 'ModalTest',
+    name: 'ModalLogin',
     computed: {
       ...mapState({
         isVisible: state => state.modals.isVisible,
@@ -28,7 +28,6 @@
     },
     methods: {
       hide() {
-        console.log('hideModal');
         this.$store.commit('hideModal');
       }
     }

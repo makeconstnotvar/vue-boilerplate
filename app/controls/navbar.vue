@@ -12,6 +12,7 @@
   </nav>
 </template>
 <script>
+  import ModalLogin from "../modals/login";
   export default {
     name: 'Navbar',
     data() {
@@ -27,7 +28,8 @@
     },
     methods: {
       showLogin() {
-        this.$store.commit('showTestModal');
+        this.$showModal(ModalLogin);
+        this.$store.commit('showModal');
       }
     }
   }

@@ -20,16 +20,9 @@
       })
     },
     methods: {
-      test(params) {
-        console.log('modals');
-        console.log(params);
-      },
       hide() {
-        console.log('hideModal');
         this.$store.commit('hideModal');
-
       }
-
     }
   }
 </script>

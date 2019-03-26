@@ -1,18 +1,20 @@
 import App from './app'
 import Vue from 'vue'
 
-import { createStore } from './store'
-import { createRouter } from './router'
-import {modals} from './modals'
-import { sync } from 'vuex-router-sync'
+import {createStore} from './store'
+import {createRouter} from './router'
+import {Modals} from './modals'
+import {sync} from 'vuex-router-sync'
 import 'filters/date'
 
-export function createApp () {
-  
+export function createApp() {
+
+
   const router = createRouter();
   const store = createStore();
-  modals.connect(store);
   sync(store, router);
+
+  Vue.use(Modals, {store});
 
   const app = new Vue({
     store,
@@ -20,5 +22,5 @@ export function createApp () {
     render: h => h(App)
   });
 
-  return { app, router, store }
+  return {app, router, store}
 }

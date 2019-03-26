@@ -1,12 +1,12 @@
-import {modals} from "../modals";
+
 
 export default {
+
   state: {
     isVisible: false
   },
   mutations: {
-    showTestModal(state) {
-      modals.mount('ModalTest');
+    showModal(state) {
       state.isVisible = true;
     },
     hideModal(state) {
