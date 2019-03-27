@@ -29,7 +29,7 @@
     methods: {
       showLogin() {
         this.$showModal(ModalLogin);
-        this.$store.commit('showModal');
+        
       }
     }
   }
