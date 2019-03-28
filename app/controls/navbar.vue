@@ -13,7 +13,7 @@
 </template>
 <script>
   import ModalLogin from "../modals/login";
-  import ModalRegistration from "../modals/registration";
+  import ModalRegistrationSeeker from "../modals/registration-seeker";
   export default {
     name: 'Navbar',
     data() {
@@ -32,7 +32,7 @@
         this.$showModal(ModalLogin);
       },
       showRegistration() {
-        this.$showModal(ModalRegistration);
+        this.$showModal(ModalRegistrationSeeker);
       }
     }
   }

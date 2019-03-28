@@ -13,7 +13,7 @@
             <input class="form-control" type="text" placeholder="Логин" v-model="login">
           </div>
           <div class="mb-3">
-            <input class="form-control" type="text" placeholder="Пароль" v-model="password">
+            <input class="form-control" type="password" placeholder="Пароль" v-model="password">
           </div>
           <div class="form-checkox">
             <label><input type="checkbox" v-model="remember">Запомнить меня</label>
@@ -22,7 +22,7 @@
         <div class="login-social">
           <h5>Вход через соцсети</h5>
           <div>
-      
+
           </div>
         </div>
       </div>
@@ -35,8 +35,8 @@
 </template>
 
 <script>
-  import ModalRegistration from "../modals/registration";
-  
+  import ModalRegistrationSeeker from "./registration-seeker";
+
   export default {
     name: 'ModalLogin',
     data: function () {
@@ -55,7 +55,7 @@
         this.$hideModal();
       },
       showRegistration() {
-        this.$showModal(ModalRegistration);
+        this.$showModal(ModalRegistrationSeeker);
       }
     }
   }
