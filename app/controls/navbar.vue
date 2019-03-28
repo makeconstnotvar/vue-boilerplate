@@ -6,13 +6,14 @@
       <router-link :key="idx" v-for="(item,idx) in items" class="nav-item hover-high mr-20" :to="item.link">{{item.name}}</router-link>
       <div class="d-flex ml-auto">
         <span class="nav-item hover-high mr-20" @click="showLogin">Логин</span>
-        <router-link class="nav-item hover-high" to="/registration">Регистрация</router-link>
+        <span class="nav-item hover-high" @click="showRegistration">Регистрация</span>
       </div>
     </div>
   </nav>
 </template>
 <script>
   import ModalLogin from "../modals/login";
+  import ModalRegistration from "../modals/registration";
   export default {
     name: 'Navbar',
     data() {
@@ -29,7 +30,9 @@
     methods: {
       showLogin() {
         this.$showModal(ModalLogin);
-        
+      },
+      showRegistration() {
+        this.$showModal(ModalRegistration);
       }
     }
   }

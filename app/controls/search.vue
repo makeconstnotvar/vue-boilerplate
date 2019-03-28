@@ -34,7 +34,8 @@
   import SelectBox from './select-box';
   import Comma from './comma';
   import _ from 'lodash';
-
+  import ModalCity from '../modals/city'
+  
   export default {
     name: 'Search',
     props: ['text', 'page'],
@@ -69,7 +70,7 @@
         this.searchText = hint;
       },
       showModalCity() {
-        console.log('модал города')
+        this.$showModal(ModalCity);
       },
       setSample(text) {
         this.searchText = text;

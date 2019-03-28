@@ -1,19 +1,25 @@
 <template>
-    <div class="container">
-        <h1>Выбор города</h1>
-        <div>Текущий: {{selectedCity.name}}</div>
-        <input @input="search" v-model="searchText" type="text" placeholder="введите первый буквы названия города">
-        <div class="search-dropdown-box" ref="searchdropdownbox">
-            <div class="search-dropdown" :class="{opened:isOpen}">
-                <div class="search-dropdown-item"  v-for="drop in drops" @click="apply(drop)">{{drop.name}}</div>
-            </div>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h1>Выбор города</h1>
+      <div>Текущий: {{selectedCity.name}}</div>
+    </div>
+    <div class="modal-body">
+      <input @input="search" v-model="searchText" type="text" placeholder="введите первый буквы названия города">
+      <div class="search-dropdown-box" ref="searchdropdownbox">
+        <div class="search-dropdown" :class="{opened:isOpen}">
+          <div class="search-dropdown-item" v-for="drop in drops" @click="apply(drop)">{{drop.name}}</div>
         </div>
-
-        <button @click="apply">Выбрать</button>
+      </div>
+      <button @click="apply">Выбрать</button>
       <div class="cities">
         <span class="cities-item" v-for="city in cities" @click="apply(city)">{{city.name}} ({{city.count}})</span>
       </div>
     </div>
+    <div class="modal-footer">
+    
+    </div>
+  </div>
 </template>
 <script>
   import {mapState} from 'vuex';

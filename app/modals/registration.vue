@@ -1,17 +1,9 @@
 <template>
   <div class="modal-content">
     <div class="modal-header">
-      <h5 class="modal-title">Логин</h5>
-      <button class="close" @click="hide">
-        <span>×</span>
-      </button>
+      <h1>Регистрация</h1>
     </div>
     <div class="modal-body">
-      <label for="user"></label>
-      <input id="user" type="text" placeholder="Логин">
-      <label for="pass"></label>
-      <input id="pass" type="text" placeholder="Пароль">
-      <button></button>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-primary">Вход</button>
@@ -22,7 +14,7 @@
 
 <script>
   export default {
-    name: 'ModalLogin',
+    name: 'ModalRegistration',
     methods: {
       hide() {
         this.$hideModal();

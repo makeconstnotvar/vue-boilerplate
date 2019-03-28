@@ -12,20 +12,30 @@ const Modals = {
         let Component = Vue.extend(componentObj);
         instance = new Component();
         Modals.instances[name] = instance;
+        instance.$mount();
       }
-      let ref = instance.$mount("#modal-root");
-      ref.$el.id = "modal-root";
+      let root = document.getElementById('modal-root');
+      if (root.firstElementChild !== instance.$el) {
+        root.innerHTML = '';
+        root.appendChild(instance.$el);
+      }
       store.commit("showModal");
     };
-
+  
     Vue.prototype.$hideModal = function () {
       store.commit("hideModal");
     };
-
+  
     Vue.prototype.$removeModal = function (componentObj) {
       let instance = Modals.instances[componentObj.name];
-      store.commit("hideModal");
-      instance.$destroy();
+      if (instance) {
+        let root = document.getElementById('modal-root');
+        if (root.firstElementChild === instance.$el) {
+          store.commit("hideModal");
+          root.innerHTML = '';
+        }
+        instance.$destroy();
+      }
     }
   }
 };

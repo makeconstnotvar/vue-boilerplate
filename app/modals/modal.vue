@@ -21,7 +21,7 @@
     },
     methods: {
       hide() {
-        this.$store.commit('hideModal');
+        this.$hideModal();
       }
     }
   }
