@@ -6,11 +6,10 @@
     <div class="list-header mb-20">
       <div class="container">
         <h1>Поиск вакансий
-          <Progress :visible="isProgress"/>
+          <ResultsProgress/>
         </h1>
       </div>
     </div>
-
     <div class="container d-flex">
       <div class="side-box">
         <FilterList @onApply="refetch" @onChange="refetch" @onClear="clear"/>
@@ -32,13 +31,13 @@
   import Pager from '../controls/pager';
   import Search from '../controls/search';
   import VacancyItem from '../controls/vacancy-item';
-  import Progress from "../controls/progress";
+  import ResultsProgress from "../controls/progress/results";
   import Sorting from "../controls/sorting";
   import Period from "../controls/period";
 
   export default {
     name: 'PageVacancies',
-    components: {Period, Progress, FilterList, Pager, Search, VacancyItem, Sorting},
+    components: {Period, ResultsProgress, FilterList, Pager, Search, VacancyItem, Sorting},
     created() {
       let {query, params} = this.$route;
       this.updateStoreFromUrl(query, params);
@@ -81,7 +80,6 @@
         this.refetch(true);
       },
       changeSort(sort) {
-        console.log(sort);
         this.$store.commit('changeSort', sort);
         this.refetch(true);
       },
@@ -106,7 +104,7 @@
         searchText: state => state.filter.searchText,
         isProgress: state => state.resultsProgress,
       })
-
+  
     }
   }
 </script>

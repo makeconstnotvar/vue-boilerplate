@@ -2,19 +2,19 @@ import axios from 'axios';
 
 let provider = {
   async fetch(params) {
-    let response = await axios.get('https://jobrum.com/job/GetFilter', {params});
+    let response = await axios.get('http://dev-rabota.integrum.net/job/GetFilter', {params});
     return serialize(response.data.data);
   },
   async fetchRegionHints(params) {
-    let response = await axios.get('https://jobrum.com/Job/SearchRegionFilter', {params});
+    let response = await axios.get('http://dev-rabota.integrum.net/Job/SearchRegionFilter', {params});
     return response.data.data.map(d => ({id: d.value, name: d.name, count: d.count, code: d.altName}));
   },
   async fetchMetroHints(params) {
-    let response = await axios.get('https://jobrum.com/Job/GetFullMetroFilter', {params});
+    let response = await axios.get('http://dev-rabota.integrum.net/Job/GetFullMetroFilter', {params});
     return response.data.data.map(d => ({id: d.value.id, name: d.name, count: d.count, color: d.value.color}));
   },
   async fetchProfHints(params) {
-    let response = await axios.get('https://jobrum.com/Job/GetFullProfAreaFilter', {params});
+    let response = await axios.get('http://dev-rabota.integrum.net/Job/GetFullProfAreaFilter', {params});
     return response.data.data.map(d => ({id: d.value.id, name: d.name, count: d.count}));
   }
 };

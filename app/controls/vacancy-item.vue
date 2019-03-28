@@ -27,13 +27,13 @@
     props: ['vacancy'],
     computed: {
       linkToEmployerValidation() {
-        return `https://jobrum.com/employer/${this.vacancy.employerId}/about`
+        return `http://dev-rabota.integrum.net/employer/${this.vacancy.employerId}/about`
       },
       linkToVacancy() {
-        return `https://jobrum.com/vacancy/${this.vacancy.id}`
+        return `http://dev-rabota.integrum.net/vacancy/${this.vacancy.id}`
       },
       linkToResponse() {
-        return `https://jobrum.com/Static/JobExternalJump/?jobId=${this.vacancy.id}&sourceId=1`
+        return `http://dev-rabota.integrum.net/Static/JobExternalJump/?jobId=${this.vacancy.id}&sourceId=1`
       }
     }
   }

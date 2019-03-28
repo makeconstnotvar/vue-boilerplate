@@ -19,6 +19,7 @@
     "moment": "^2.24.0"
   },
   "devDependencies": {
+    "jquery": "^3.3.1",
     "@fortawesome/fontawesome-free": "^5.7.2",
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",

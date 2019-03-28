@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export default {
   async topSeekerSpecs() {
-    let response = await axios.get('https://jobrum.com/Job/GetTopProfAreas');
+    let response = await axios.get('http://dev-rabota.integrum.net/Job/GetTopProfAreas');
     return response.data.data.map(spec => {
       return {
         name: spec.name,
@@ -12,7 +12,7 @@ export default {
     })
   },
   async topEmployerSpecs() {
-    let response = await axios.get('https://jobrum.com/ResumeApi/GetTopProfAreas');
+    let response = await axios.get('http://dev-rabota.integrum.net/ResumeApi/GetTopProfAreas');
     return response.data.data.map(spec => {
       return {
         name: spec.name,
@@ -23,7 +23,7 @@ export default {
 
   },
   async statistic() {
-    let response = await axios.get('https://jobrum.com/Misc/GetMainPageCounts')
+    let response = await axios.get('http://dev-rabota.integrum.net/Misc/GetMainPageCounts')
     return response.data.data.map(stats => {
       return {
         employers: stats.employers,
@@ -33,7 +33,7 @@ export default {
     })
   },
   async topSeekerQueries() {
-    let response = await axios.get('https://jobrum.com/Misc/GetMainPageJobSeekerTop');
+    let response = await axios.get('http://dev-rabota.integrum.net/Misc/GetMainPageJobSeekerTop');
     return {
       queries: response.data.data.top.map(job => {
         return {
@@ -52,7 +52,7 @@ export default {
     }
   },
   async topEmployerQueries() {
-    let response = await axios.get('https://jobrum.com/Misc/GetMainPageEmployeeTop');
+    let response = await axios.get('http://dev-rabota.integrum.net/Misc/GetMainPageEmployeeTop');
     return {
       queries: response.data.data.top.map(job => {
         return {

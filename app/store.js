@@ -1,10 +1,12 @@
 import Vuex from 'vuex';
 import Vue from 'vue';
 import vacancies from './stores/vacancies';
+import resumes from './stores/resumes';
 import filter from './stores/filter';
 import cities from './stores/cities';
 import home from './stores/home';
 import modals from './stores/modals';
+import auth from './stores/auth';
 
 Vue.use(Vuex);
 
@@ -55,7 +57,9 @@ export function createStore () {
       }
     },
     modules: {
+      auth,
       vacancies,
+      resumes,
       filter,
       cities,
       home,

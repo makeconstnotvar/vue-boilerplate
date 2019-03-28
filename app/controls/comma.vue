@@ -1,5 +1,7 @@
 <template>
-  <span v-if="mode==='after' && index+1 !== total">, </span>
+  <span>
+  <slot/><span v-if="mode==='after' && index+1 !== total">, </span>
+  </span>
 </template>
 <script>
   export default {

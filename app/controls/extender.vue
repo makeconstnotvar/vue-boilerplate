@@ -15,12 +15,12 @@
 
 <script>
   import SelectBox from './select-box';
-  import Progress from './progress';
+  import ResultsProgress from '../controls/progress/results';
   import _ from 'lodash';
 
   export default {
     name: "Extender",
-    components: {SelectBox, Progress},
+    components: {SelectBox, ResultsProgress},
     props: ['item', 'params'],
     methods: {
       toggleHint(item) {

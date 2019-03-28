@@ -2,11 +2,11 @@ import axios from 'axios';
 
 export default {
   async fetch(params) {
-    let response = await axios.get('https://jobrum.com/Job/Search', {params});
+    let response = await axios.get('http://dev-rabota.integrum.net/Job/Search', {params});
     return serialize(response.data.data);
   },
   async ferchHits(searchText) {
-    let response = await axios.get('https://jobrum.com/misc/SearchJobNames', {params: {searchText}});
+    let response = await axios.get('http://dev-rabota.integrum.net/misc/SearchJobNames', {params: {searchText}});
     return response.data.data;
   }
 };

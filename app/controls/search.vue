@@ -12,8 +12,9 @@
       </SelectBox>
       <div class="white">Примеры:
         <template v-for="(sample,idx) in samples">
-          <span class="dashed hover-dark" @click="setSample(sample)">{{sample}}</span>
-          <Comma :index="idx" :total="samples.length"></Comma>
+          <Comma :index="idx" :total="samples.length">
+            <span class="dashed hover-dark" @click="setSample(sample)">{{sample}}</span>
+          </Comma>
         </template>
       </div>
     </div>
@@ -58,7 +59,7 @@
         this.$emit('onSearch', this.searchText);
       },
       showHints: _.debounce(function () {
-        this.$store.dispatch('fetchHits', this.searchText).then(() => {
+        this.$store.dispatch('fetchHints', this.searchText).then(() => {
           this.isHintsOpen = true;
         })
       }, 300),

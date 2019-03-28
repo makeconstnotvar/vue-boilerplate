@@ -1,4 +1,4 @@
-import vacanciesProvider from '../providers/vacancies';
+import resumesProvider from "../providers/resumes";
 
 export default {
   state: {
@@ -18,16 +18,12 @@ export default {
     },
   },
   actions: {
-    async fetchVacancies({dispatch, commit}, params) {
+    async fetchResumes({dispatch, commit}, params) {
       dispatch('resultsProgressOn');
-      let data = await vacanciesProvider.fetch(params);
+      let data = await resumesProvider.fetch(params);
       dispatch('resultsProgressOff');
       commit('changeVacancies', data.vacancies);
       commit('changeCount', data.count);
-    },
-    async fetchHints({dispatch, commit}, searchText) {
-      let hints = await vacanciesProvider.ferchHits(searchText);
-      commit('changeHints', hints.result);
     }
   }
 }
