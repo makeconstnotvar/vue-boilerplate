@@ -4,6 +4,7 @@
   "description": "",
   "main": "start.js",
   "scripts": {
+    "run": "node start",
     "gulp": "gulp",
     "watch-js": "webpack --config webpack.config.client.js --hide-modules --watch",
     "watch-css": "gulp watch",
