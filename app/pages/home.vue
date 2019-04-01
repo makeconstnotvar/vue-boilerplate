@@ -13,21 +13,9 @@
       <div class="promo-field d-flex">
         <Search @onSearch="toSearch"/>
       </div>
-      <div class="container">
-        <a @click="toEnter">Создать резюме</a>
-        <a @click="toLoad">Загрузить резюме</a>
-        <div v-if="showEnter">
-          <input class="w-50" v-model="email" type="text" placeholder="email">
-          <input class="w-50" v-model="password" type="text" placeholder="password">
-          <button @click="enter">Создать</button>
-        </div>
-        <div v-if="showLoad">
-          <label for="resumeUrl">Ссылка на ваше резюме</label>
-          <input id="resumeUrl" class="w-50" v-model="email" type="text" placeholder="url">
-          <span class="dashed">Например: https://www.superjob.ru/resume/massazhistka-39163216.html</span>
-          <input class="w-50" v-model="password" type="text" placeholder="email">
-          <button @click="load">Загрузить</button>
-        </div>
+      <div class="container row center middle">
+        <a class="btn btn-secondary mr-5" @click="showCreateResumeModal">Создать резюме</a>
+        <a class="btn btn-primary" @click="showImportDrop">Загрузить резюме</a>
       </div>
     </div>
     <div class="container">
@@ -140,7 +128,7 @@
 <script>
   import Search from 'controls/search'
   import {mapState} from 'vuex';
-
+  import CreateResumeModal from '../modals/create-resume';
   export default {
     name: 'PageHome',
     components: {Search},
@@ -176,9 +164,8 @@
       load() {
 
       },
-      toEnter(text) {
-        this.showLoad = false;
-        this.showEnter = true;
+      showCreateResumeModal() {
+        this.$showModal(CreateResumeModal);
       },
       toLoad(text) {
         this.showEnter = false;

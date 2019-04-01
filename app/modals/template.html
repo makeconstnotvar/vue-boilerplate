@@ -1,0 +1,30 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h2>Регистрация <span class="dashed" @click="showRegistrationSeeker">соискателя</span> | <span>компании</span></h2>
+    <a class="close" @click="hide">
+      <i class="fas fa-times"></i>
+    </a>
+  </div>
+  <div class="modal-body"></div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" @click="doRegistration">Перезвоните мне</button>
+    <button type="button" class="btn btn-secondary" @click="showLogin">Логин</button>
+  </div>
+</div>
+<!--
+export default {
+    name: "Modal",
+    data: function () {
+      return {
+        email: '',
+        password: ''
+      }
+    },
+    methods:{
+      hide() {
+        this.$hideModal();
+      }
+    }
+  }
+
+-->

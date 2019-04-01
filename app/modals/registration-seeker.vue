@@ -7,20 +7,30 @@
       </a>
     </div>
     <div class="modal-body">
-      <div class="mb-3">
-        <input class="form-control" type="text" placeholder="Имя" v-model="firstName">
-      </div>
-      <div class="mb-3">
-        <input class="form-control" type="text" placeholder="Фамилия" v-model="lastName">
-      </div>
-      <div class="mb-3">
-        <input class="form-control" type="email" placeholder="Электронная почта" v-model="email">
-      </div>
-      <div class="mb-3">
-        <input class="form-control" type="password" placeholder="Пароль" v-model="password1">
-      </div>
-      <div class="mb-3">
+      <div class="row">
+        <div class="grow">
+          <div class="mb-3">
+            <input class="form-control" type="text" placeholder="Имя" v-model="firstName">
+          </div>
+          <div class="mb-3">
+            <input class="form-control" type="text" placeholder="Фамилия" v-model="lastName">
+          </div>
+          <div class="mb-3">
+            <input class="form-control" type="email" placeholder="Электронная почта" v-model="email">
+          </div>
+          <div class="mb-3">
+            <input class="form-control" type="password" placeholder="Пароль" v-model="password1">
+          </div>
+          <div class="mb-3">
         <input class="form-control" type="password" placeholder="Повторите пароль" v-model="password2">
+          </div>
+        </div>
+        <div class="login-social">
+          <h5>Вход через соцсети</h5>
+          <div>
+
+          </div>
+        </div>
       </div>
     </div>
     <div class="modal-footer">
