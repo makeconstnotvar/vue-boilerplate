@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="main-block">
+    <div class="main-block col">
       <div class="container">
         <div class="change-mode">
           <a class="dashed" @click="changeMode('seeker')">Соискатель</a> | <a class="dashed" @click="changeMode('employer')">Работодатель</a>
@@ -13,7 +13,7 @@
       <div class="promo-field d-flex">
         <Search @onSearch="toSearch"/>
       </div>
-      <div class="container row center middle">
+      <div class="container row center middle grow">
         <a class="btn btn-secondary mr-5" @click="showCreateResumeModal">Создать резюме</a>
         <a class="btn btn-primary" @click="showImportDrop">Загрузить резюме</a>
       </div>
